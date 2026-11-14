@@ -1,0 +1,107 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isMe(uid) { return signedIn() && request.auth.uid == uid; }
+    function isAdmin() {
+      return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    function validPost(d) {
+      return d.title is string && d.title.size() > 0 && d.title.size() <= 2000
+        && d.place is string && d.place.size() <= 100
+        && d.images is list && d.images.size() <= 10
+        && d.createdAt is string && d.likedBy is list;
+    }
+    function likeOnly() {
+      let before = resource.data.likedBy.toSet();
+      let after = request.resource.data.likedBy.toSet();
+      return signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likedBy'])
+        && after.difference(before).union(before.difference(after)).hasOnly([request.auth.uid]);
+    }
+
+    // 管理者: Firebase コンソールで admins/{自分のUID} を作成する(アプリからは書き込めない)
+    match /admins/{uid} {
+      allow get: if isMe(uid);
+      allow write: if false;
+    }
+
+    // 個人の記録(本人だけ)
+    match /users/{uid} {
+      allow read: if isMe(uid) || isAdmin();
+      allow create, update: if isMe(uid)
+        && request.resource.data.stateJson is string
+        && request.resource.data.stateJson.size() < 1000000;
+      allow delete: if isMe(uid);
+    }
+    match /follows/{uid} {
+      allow read: if isMe(uid) || isAdmin();
+      allow write: if isMe(uid);
+    }
+
+    // 公開プロフィール(ニックネームとアバター)
+    match /profiles/{uid} {
+      allow read: if true;
+      allow create, update: if isMe(uid)
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 40;
+      allow delete: if isMe(uid);
+    }
+
+    // 写真(IDを知っていれば閲覧可・一覧は管理者のみ)
+    match /media/{id} {
+      allow get: if true;
+      allow list: if isAdmin();
+      allow create: if signedIn()
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 1000000;
+      allow delete: if isMe(resource.data.ownerId) || isAdmin();
+    }
+
+    // みんなの旅(だれでも閲覧可)
+    match /posts/{id} {
+      allow read: if true;
+      allow create: if validPost(request.resource.data)
+        && (isMe(request.resource.data.authorId) || isAdmin());
+      allow update: if likeOnly()
+        || (isMe(resource.data.authorId) && validPost(request.resource.data)
+            && request.resource.data.authorId == resource.data.authorId
+            && request.resource.data.createdAt == resource.data.createdAt
+            && request.resource.data.likedBy == resource.data.likedBy);
+      allow delete: if isMe(resource.data.authorId) || isAdmin();
+
+      match /comments/{cid} {
+        allow read: if true;
+        allow create: if isMe(request.resource.data.authorId)
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 300;
+        allow update: if isMe(resource.data.authorId)
+          && request.resource.data.authorId == resource.data.authorId
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 300;
+        allow delete: if isMe(resource.data.authorId) || isAdmin();
+      }
+    }
+
+    // 非表示にした投稿(投稿者と管理者だけ)
+    match /hiddenPosts/{id} {
+      allow read, delete: if isMe(resource.data.authorId) || isAdmin();
+      allow create: if isMe(request.resource.data.authorId) || isAdmin();
+    }
+
+    match /reports/{id} {
+      allow create: if signedIn() && request.resource.data.reporterId == request.auth.uid
+        && request.resource.data.reason is string && request.resource.data.reason.size() <= 500;
+      allow read, delete: if isAdmin();
+    }
+    match /feedback/{id} {
+      allow create: if request.resource.data.message is string
+        && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 3000;
+      allow read, delete: if isAdmin();
+    }
+    match /audit/{id} {
+      allow read, create: if isAdmin();
+    }
+  }
+}
