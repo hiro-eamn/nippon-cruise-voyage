@@ -1,0 +1,37 @@
+/* A travel album: quiet paper, mounted photographs and small captions. */
+body{background-color:#f1ece3;background-image:repeating-linear-gradient(0deg,#ac91600a 0 1px,transparent 1px 5px);color:#29454c}
+header{background:#fffdf8;border-bottom:1px solid #d7ccba;box-shadow:0 3px 0 #e9e1d1}
+header .brand{width:290px}.brand .brand-logo{filter:none}
+main{background:linear-gradient(90deg,#c5b99f14,transparent 38px),#fffdf8;border-inline:1px solid #e5ddce;box-shadow:0 10px 35px #6e5b3b08;border-radius:4px;margin-top:24px}
+.tiny-kicker,.eyebrow{color:#8c7750;letter-spacing:2px}.editorial-welcome h1{font-weight:500}
+.editorial-sectionhead h2,.moments-heading h2,.page-intro h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:600;letter-spacing:.04em}
+.page-intro{background:linear-gradient(105deg,#f5efdf,#fffdf7);border:1px solid #e4d9c5;border-radius:7px;box-shadow:0 3px 0 #e9dfcd55}
+.page-intro .intro-emblem{color:#a38e68;background:#f0e8d8;border-color:#ddcda9}
+.ocean-story{border:10px solid #fff;outline:1px solid #e4dccc;border-radius:3px;box-shadow:0 5px 15px #5d4e3420}
+.ocean-story:before{border-radius:0}.ocean-overlay h2{text-shadow:0 2px 12px #163b4644}
+.hero-imagenote{font-family:"Yu Mincho",serif;letter-spacing:.04em}
+.moments-board{border-color:#e4d8c4;background:transparent}.polaroid{border-radius:3px;border-color:#e6dece;background:#fff;box-shadow:0 5px 13px #55483218}.polaroid .moment-photo{border-radius:1px}
+.journey-link{border-radius:8px;border:1px solid #e1d6c3;box-shadow:0 4px 0 #e9e0d1;background-color:#f9f4e9}.journey-link strong{letter-spacing:.03em}.journey-number{color:#c8b995;opacity:.65}
+.journey-journal,.ship-location{border-radius:7px;border-color:#e3d8c4;box-shadow:0 4px 0 #ece4d6}.journey-journal .journal-photo{border:9px solid #fff}
+.map-home-card{background:#fffefb;border-radius:7px;border:1px solid #ded9ca;box-shadow:0 5px 0 #eae2d3;position:relative}.map-home-card:hover{background:#fffefb}.map-home-art{border:9px solid #fff;border-bottom:0;border-radius:0}.map-home-copy{padding-top:14px}.map-home-copy small{color:#707b73}.onboard-course-title .tiny-kicker{color:#967d50}
+.gallery{gap:28px}.gallery .post{padding:10px 10px 0;border-radius:5px;border-color:#dfd7c7;background:#fff;box-shadow:0 5px 14px #5b4d3715}.gallery .postphoto{border-radius:2px}.gallery .postbody{padding:17px 8px}.postmeta{color:#455c60}.timestamp{color:#948368;font-size:11px;letter-spacing:.03em}.post-excerpt{font-weight:400}
+.collection-caption{border-color:#ded2bd;color:#927c52}.collection-caption .hand-note{font-family:"Yu Mincho","Hiragino Mincho ProN",serif}.stamp-panel{background:#fcf9f1;border:1px solid #e5dac6;border-radius:6px;padding:22px}.stamp{border-radius:5px;background:#fffdf8;border-color:#dfcfb1;box-shadow:0 4px 0 #ece1cd}.encounter-card,.my-records,.my-voyage{border-radius:6px;border-color:#e3d7c1;box-shadow:0 4px 0 #eee5d7}.my-records .uploadpreview{border:9px solid #fff;border-bottom-width:22px;outline:1px solid #e3daca;border-radius:2px;box-shadow:0 4px 10px #53452a14}
+.my-profile{border-radius:7px;border-color:#ded4bf;background:#fbf7ed}.my-profile h2{font-family:"Yu Mincho","Hiragino Mincho ProN",serif}
+.community-empty,.encounter-empty{border:1px dashed #d7c9af;border-radius:8px;background:#faf6eb}
+.album-note{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:14px;line-height:1.9;color:#947b51;letter-spacing:.05em}
+/* The revealed page contains only a short poem and generous blank space. */
+.journal-paper{background:linear-gradient(90deg,#e4d9bd55,transparent 18%),#fffaf0;gap:0;padding:25px 14px;box-shadow:inset -2px 0 0 #fffdf7}
+.journal-paper .journal-poem{margin:0;font:16px/2.5 "Yu Mincho","Hiragino Mincho ProN",serif;letter-spacing:.045em;text-align:center;color:#8b7451;white-space:nowrap}
+.cover-stitch:before,.cover-stitch:after{content:none}
+@media(max-width:760px){
+ header{grid-template-columns:1fr auto 1fr}header .brand{width:clamp(160px,calc(100vw - 200px),182px)}
+ main{margin-top:15px;border:0;box-shadow:none;background:linear-gradient(90deg,#c5b99f0b,transparent 20px),#fffdf8}
+ .ocean-story{border-width:7px;margin-inline:-3px;border-radius:2px}.page-intro{border-radius:6px}
+ .map-home-art{border-width:6px}.map-home-card{border-radius:6px}.map-home-copy{padding-top:12px}
+ .gallery{gap:24px}.gallery .post{padding:8px 8px 0}.gallery .postbody{padding:15px 6px}.stamp-panel{padding:13px 10px}.journal-paper .journal-poem{font-size:14px;line-height:2.6;letter-spacing:.025em}
+ .album-note{font-size:12px}.editorial-sectionhead h2{font-size:21px}
+}
+@media(max-width:360px){
+ header .brand{width:144px}.headerActions .testbtn{display:none}
+ .headerActions .notification-bell{right:49px;width:28px}.headerActions .profilebtn,header.is-onboard .headerActions .profilebtn{right:5px;width:40px;min-width:40px}
+}
