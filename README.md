@@ -25,7 +25,13 @@ ChatGPT のサイト機能で作ったサイトを、Firebase（ログイン・�
 - `hiddenPosts` / `reports` / `feedback` / `audit` … 非表示の投稿・通報・改善要望・操作履歴
 - `admins/{uid}` … ここに自分の UID のドキュメントを作ると管理者メニューが出ます
 
-## 初期設定
+## 公開先
+
+- サイト: https://hiro-eamn.github.io/nippon-cruise-voyage/
+- コード: https://github.com/hiro-eamn/nippon-cruise-voyage
+- データベース: Firebase プロジェクト `nippon-cruise-voyage`（無料の Spark プラン、Firestore は東京リージョン）
+
+## 初期設定（1〜6 は設定済み。別のプロジェクトで作り直すときの手順）
 
 1. [Firebase コンソール](https://console.firebase.google.com/) でプロジェクトを作成
 2. **Firestore Database** を作成（本番モード、ロケーションは `asia-northeast1` 推奨）
@@ -46,7 +52,12 @@ ChatGPT のサイト機能で作ったサイトを、Firebase（ログイン・�
 ## 手元で確認
 
 ```
-python -m http.server 8765 --bind 127.0.0.1 --directory public
+python -m http.server 8765 --directory public
 ```
 
-`http://127.0.0.1:8765/` を開きます（`localhost` / `127.0.0.1` は Firebase の承認済みドメインに最初から入っています）。
+`http://localhost:8765/` を開きます（`localhost` は Firebase の承認済みドメインに最初から入っています。`127.0.0.1` ではログインできません）。
+
+## 更新のしかた
+
+`public/` のファイルを書き換えて GitHub の `main` に反映すると、1分ほどでサイトに自動公開されます。
+`firestore.rules` を変えたときは、Firebase コンソールの Firestore →「ルール」に貼り付けて公開してください（GitHub に置くだけでは反映されません）。
