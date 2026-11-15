@@ -263,3 +263,60 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px soli
 body .preparation-card{transform:none}
 .notification-heading{padding-right:56px}
 .notification-heading button{font-size:14px;min-height:44px;padding:6px 12px;white-space:nowrap}
+
+/* ===== Round 4: nothing overlaps, calmer look ===== */
+/* Header: three matching icon+caption buttons on one baseline. */
+.bell-caption{display:none}
+@media(max-width:760px){
+ body header .headerActions .notification-bell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:auto;min-width:52px;height:56px;min-height:56px;padding:4px 5px;background:transparent;border-radius:12px;color:#44595f;line-height:1.15}
+ body header .headerActions .bell-caption{display:block;font-size:12px;font-weight:600;white-space:nowrap}
+ body header .headerActions .testbtn svg,body header .headerActions .notification-bell svg,body header .headerActions .boarding-entry svg{width:26px;height:28px;flex:none}
+ body header .headerActions .profilebtn>span:first-child,body header .headerActions .profilebtn .avatar-image{width:28px;height:28px;flex:none}
+ body header .headerActions .profilebtn .avatar-emoji{font-size:21px}
+ body header .headerActions .testbtn span,body header .profile-caption,body header .boarding-entry span,body header .bell-caption{line-height:1.15;min-height:0;height:auto;padding:0;margin:0}
+ body header .headerActions .notification-badge{top:1px;right:6px;border:2px solid #fffdf8}
+ body header .brand{max-width:150px}
+ body header.is-onboard .brand{max-width:120px}
+ body header.is-onboard .headerActions .bell-caption{display:none}
+ body header.is-onboard .headerActions .notification-bell{min-width:42px}
+}
+@media(max-width:360px){body header .headerActions .bell-caption{display:none}body header .headerActions .notification-bell{min-width:40px}}
+
+/* Sample booking note: one quiet strip instead of a dashed box. */
+body .sample-reservation-note{background:#f6f1e4;border:0;border-radius:12px;padding:10px 14px;gap:4px 10px;line-height:1.5;color:#4f5a55}
+body .sample-reservation-note>span{background:#fff;color:#74602f;border:1px solid #e0d2ad;padding:2px 10px;font-weight:700}
+body .sample-reservation-note small{color:#4f6268;flex-basis:100%}
+
+/* Countdown: a clean white tile. */
+body .voyage-counter.is-countdown{background:#fff;border:1px solid var(--ui-line);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow);color:var(--ui-sub)}
+body .voyage-counter.is-countdown strong{color:var(--ui-red)}
+
+/* Hero (phone): the photograph sits on top, the words sit on deep sea blue below it, so text never covers the ship. */
+@media(max-width:760px){
+ body .ocean-story{position:relative;min-height:0;background-color:#0c3948;background-image:url('assets/voyage-hero.webp');background-repeat:no-repeat;background-size:auto 236px;background-position:80% 0}
+ body .ocean-story::before{content:"";display:block;position:absolute;inset:0;border-radius:0;background:#0c3948 url('assets/seigaiha.svg') 0 100%/64px auto;-webkit-mask-image:linear-gradient(180deg,transparent 132px,#000 226px);mask-image:linear-gradient(180deg,transparent 132px,#000 226px);opacity:1;pointer-events:none}
+ body .ocean-story::after{content:none}
+ body .ocean-overlay{position:relative;z-index:1;justify-content:flex-start;padding:206px 22px 26px;background:none}
+ body .ocean-label{order:0;margin:0 0 8px;padding:0;background:none;border:0;border-radius:0;color:#e8cf9b;font-size:11px;font-weight:700;letter-spacing:.2em}
+ body .ocean-overlay h2{font-size:29px;line-height:1.45;margin:0 0 10px;text-shadow:none}
+ body .ocean-overlay p{font-size:16px!important;line-height:1.75;color:#dfeaec;text-shadow:none}
+ body .hero-imagenote{z-index:1;top:12px;right:12px;font-size:12px!important;padding:3px 10px;background:rgba(9,30,40,.55)}
+ body .departure-sticker{display:none}
+}
+
+/* Bottom bar: the home button stays inside the bar and no longer covers the page. */
+@media(max-width:760px){
+ body nav{border-top:1px solid var(--ui-line);box-shadow:0 -6px 20px #3b2f1a10;padding:6px 4px max(10px,env(safe-area-inset-bottom));align-items:center}
+ body nav button{border-radius:14px}
+ body nav button.active{background:#e6f3f2}
+ body nav button.home,body nav button.home.active{width:64px;height:64px;min-height:64px;margin:0 6px;border-radius:50%;background:var(--ui-red);box-shadow:0 4px 12px #a43f3855;color:#fff;gap:0;padding:0;justify-content:center}
+ body nav button.home .navicon{display:flex;line-height:1;height:auto;margin:0 0 2px;font-size:0}
+ body nav button.home .navicon .ui-icon{display:block;width:25px;height:25px}
+ body nav button.home{font-size:12px;line-height:1.2;padding-bottom:2px}
+ body main{padding-bottom:110px}
+}
+@media(max-width:760px){body nav button{white-space:nowrap}}
+@media(max-width:360px){body nav button{font-size:12px;letter-spacing:-.02em}body nav button.home{margin:0 2px}body .ocean-overlay h2{font-size:25px}body .ocean-overlay{padding-inline:18px}}
+/* Booking card: straight accent bar instead of a curved thick border. */
+body .voyage-pass{border-left:1px solid var(--ui-line);background:linear-gradient(90deg,var(--ui-red) 6px,#fff 6px)}
+@media(max-width:760px){body .voyage-pass{padding-left:22px}}
