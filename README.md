@@ -13,8 +13,14 @@ ChatGPT のサイト機能で作ったサイトを、Firebase（ログイン・�
 | `firebase.json` | Firebase Hosting / Firestore の設定 |
 | `.github/workflows/pages.yml` | `main` に push すると `public/` を GitHub Pages に公開 |
 
-元サイトからの変更点は、ログインが「ChatGPT でログイン」→「Google でログイン」になったことと、
-管理者バックアップが「サーバー保存」→「JSON ダウンロード」になったことだけです。画面や機能はそのままです。
+元サイトからの主な変更点:
+
+- ログインは「ChatGPT でログイン」→「Google でログイン」または「メールアドレス＋パスワード」
+- 管理者バックアップは「サーバー保存」→「JSON ダウンロード」
+- ヘッダーの「表示を試す」（乗船前・乗船中・下船後などの切り替え）、寄港地マップ、乗船コードは、検証用に**誰でも**使えます。
+  本番運用するときは管理者限定に戻してください（`production.js` と `port-map.js` の `previewMode` の条件に `feedbackIsAdmin` を足す）
+- サンプル予約の出港日は 2026-11-29。それ以降は 30 日ごとに自動で繰り上がり、カウントダウンが続きます
+- 改善要望の送信は 1 ブラウザあたり 1 分に 1 回・1 日 5 回まで
 
 ## データの保存先（Firestore）
 
@@ -36,7 +42,7 @@ ChatGPT のサイト機能で作ったサイトを、Firebase（ログイン・�
 1. [Firebase コンソール](https://console.firebase.google.com/) でプロジェクトを作成
 2. **Firestore Database** を作成（本番モード、ロケーションは `asia-northeast1` 推奨）
 3. Firestore の「ルール」タブに `firestore.rules` の内容を貼り付けて公開
-4. **Authentication** → ログイン方法 → **Google** を有効化
+4. **Authentication** → ログイン方法 → **Google** と **メール / パスワード** を有効化
 5. プロジェクトの設定 → マイアプリ → ウェブアプリを追加し、表示された `firebaseConfig` を `public/firebase-config.js` に貼り付け
 6. 公開先のドメイン（例: `ユーザー名.github.io`）を Authentication → 設定 → **承認済みドメイン** に追加
 7. 管理者にしたいアカウントでサイトに一度ログインし、Authentication のユーザー一覧で UID を確認して、
