@@ -251,6 +251,11 @@ async function handle(path,method,body){
       if(method==='POST'){
         const message=String(body.message||'').trim().slice(0,3000);
         if(!message)throw fail('内容を入力してください。');
+        /* Light flood guard: one request a minute, five a day, per browser. */
+        let sent=[];try{sent=JSON.parse(localStorage.getItem('nc-feedback-sent')||'[]').filter(t=>Date.now()-t<86400000)}catch{}
+        if(sent.some(t=>Date.now()-t<60000))throw fail('続けて送信はできません。1分ほどおいてからお試しください。',429);
+        if(sent.length>=5)throw fail('本日の送信回数の上限に達しました。明日またお送りください。',429);
+        try{localStorage.setItem('nc-feedback-sent',JSON.stringify([...sent,Date.now()]))}catch{}
         await fs.addDoc(fs.collection(db,'feedback'),{category:String(body.category||'その他').slice(0,40),message,name:String(body.name||'').slice(0,40),created_at:now()});
         return {ok:true};
       }
@@ -299,6 +304,39 @@ window.cruiseSignIn=async function(){
   }catch(e){
     if(!/popup-closed|cancelled-popup/.test(e.code||''))notify('ログインできませんでした。もう一度お試しください。');
   }
+};
+/* Email + password sign-in for visitors without a Google account.
+   mode: 'login' | 'register'. Resolves to '' on success or a message to show. */
+const AUTH_ERRORS={
+  'auth/invalid-email':'メールアドレスの形式をご確認ください。',
+  'auth/missing-password':'パスワードを入力してください。',
+  'auth/weak-password':'パスワードは6文字以上にしてください。',
+  'auth/email-already-in-use':'このメールアドレスは登録済みです。「ログイン」をお試しください。',
+  'auth/invalid-credential':'メールアドレスかパスワードが違います。',
+  'auth/wrong-password':'メールアドレスかパスワードが違います。',
+  'auth/user-not-found':'メールアドレスかパスワードが違います。',
+  'auth/too-many-requests':'試行回数が多すぎます。しばらくしてからお試しください。',
+  'auth/operation-not-allowed':'メールでのログインは現在ご利用いただけません。',
+  'auth/network-request-failed':'通信できませんでした。'
+};
+window.cruiseEmailSignIn=async function(email,password,mode){
+  if(!configured)return 'ログイン機能（Firebase）が未設定です。';
+  try{
+    const c=await load();
+    if(mode==='register')await c.authM.createUserWithEmailAndPassword(c.auth,email,password);
+    else await c.authM.signInWithEmailAndPassword(c.auth,email,password);
+    location.reload();
+    return '';
+  }catch(e){return AUTH_ERRORS[e.code]||'ログインできませんでした。もう一度お試しください。'}
+};
+window.cruiseResetPassword=async function(email){
+  if(!configured)return 'ログイン機能（Firebase）が未設定です。';
+  try{
+    const c=await load();
+    c.auth.languageCode='ja';
+    await c.authM.sendPasswordResetEmail(c.auth,email);
+    return '';
+  }catch(e){return AUTH_ERRORS[e.code]||'メールを送信できませんでした。'}
 };
 window.cruiseSignOut=async function(){
   if(!configured)return;

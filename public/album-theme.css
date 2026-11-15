@@ -35,3 +35,31 @@ main{background:linear-gradient(90deg,#c5b99f14,transparent 38px),#fffdf8;border
  header .brand{width:144px}.headerActions .testbtn{display:none}
  .headerActions .notification-bell{right:49px;width:28px}.headerActions .profilebtn,header.is-onboard .headerActions .profilebtn{right:5px;width:40px;min-width:40px}
 }
+
+/* Email login form */
+.email-login{margin-top:22px;padding-top:18px;border-top:1px solid var(--line,#ddd);display:grid;gap:8px;text-align:left}
+.email-login-lead{font-size:15px;margin:0 0 4px}
+.email-login label{font-size:15px;font-weight:700}
+.email-login input{font-size:18px;padding:12px 14px;border:1px solid #b9b2a3;border-radius:12px;width:100%;box-sizing:border-box;background:#fff}
+.email-login-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.email-login-actions button{flex:1 1 140px}
+#login-error{color:#a12d2a;font-size:15px;min-height:1.4em;margin:2px 0}
+
+/* Readability pass: text people need to read is at least 14px (decorative English labels and map pins excluded). */
+.preview-banner,.preview-banner button,.voyage-counter>span,.departure-sticker span,.departure-sticker small,
+.pass-status,.pass-main p,.notice-pill,.editorial-notice span,.hand-note,.polaroid small,.journey-link small,
+.ship-status small,.ship-location p small,.location-bottom button span,.journal-photo span,p.demo,
+.stats span,section p.muted,.booking-details .tag,.booking-details .chip,.prep-progress span,small.muted,
+.community-service p,.community-service button,.community-refine summary,.cruise-select,.following-count,
+.community-feed-heading span,.help-topics span,.account-compact small,.account-compact .account-link,
+.onboard-course-title h2 span,.map-home-copy small,.sample-clock,.schedule-disclaimer,.event-live,.event-top span,
+.event-place,.event-bottom,.event-category,.sectionhead .chip,.notice-label,.port-map-sample,.port-picker label,
+.port-fit-button,.port-country-button,.port-map-filters button,.port-map-footnote p,.port-map-footnote .textbtn,
+.port-map-legend span,.port-benefit-badge,.port-spots-heading .textbtn,.port-spots-heading+p,.port-spot-kind,
+.port-return-estimate span,.port-return-estimate small,.port-return-estimate span small,.port-card-link,
+.port-guide-settings summary,.port-guide-settings p,.port-guide-settings label,.port-locate-button span,
+.hero-imagenote,.selected small,.stamp-tabs button small,.sample-reservation-note,.sample-reservation-note span,.sample-reservation-note small,.leaflet-tooltip{font-size:14px!important}
+.tiny-kicker,.testbtn,.profile-caption,.boarding-entry span{font-size:13px!important}
+.port-pin-key{font-size:11px}
+.ocean-overlay p,.moments-heading p,.card-destination,.journal-read,#main p>small,.onboard-course-title p,
+.port-guide-heading .textbtn,[class*="port-spots"] p{font-size:14px!important}
