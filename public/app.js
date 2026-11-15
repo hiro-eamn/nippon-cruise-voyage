@@ -16,7 +16,7 @@ for(const comments of Object.values(data.comments)){for(const c of comments){if(
 function commentCount(id){return (data.comments[id]||[]).filter(c=>!c.deletedAt).length}
 function findComment(postId,commentId){return (data.comments[postId]||[]).find(c=>c.id===commentId)}
 function persist(){try{localStorage.setItem('jc-v1',JSON.stringify(data));return true}catch{toast('端末に保存できませんでした。入力はこの画面に残っています。写真を減らして、もう一度お試しください。');return false}}
-function toast(t){$('#toast').textContent=t;$('#toast').style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>$('#toast').style.display='none',3500)}
+function toast(t){$('#toast').textContent=t;$('#toast').style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>$('#toast').style.display='none',6000)}
 function modal(html){$('#modal').innerHTML=html;if(!$('#dialog').open)$('#dialog').showModal()}
 function closeModal(){if(scannerStream){scannerStream.getTracks().forEach(t=>t.stop());scannerStream=null}$('#dialog').close()}
 $('#dialog').addEventListener('cancel',()=>{if(scannerStream){scannerStream.getTracks().forEach(t=>t.stop());scannerStream=null}});

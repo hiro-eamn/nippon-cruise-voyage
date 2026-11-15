@@ -100,3 +100,5 @@ function downloadUnsaved(){const url=URL.createObjectURL(new Blob([JSON.stringif
 
 render();
 bootstrapAccount();
+/* Every dialog ends with a labelled close button (the corner x stays too). */
+const baseModal=modal;modal=function(html){baseModal(String(html).includes('voyage-onboarding')?html:html+'<button type="button" class="modal-close-bottom" onclick="closeModal()">閉じる</button>')};
