@@ -158,3 +158,56 @@ dialog h2{padding-right:48px;line-height:1.4}
 .email-login input{min-height:54px}
 .email-login .textbtn{justify-self:start;min-height:44px;text-decoration:underline;text-underline-offset:4px}
 .pass-main p b{font-weight:inherit}
+
+/* ===== Round 2: consistency and glanceability ===== */
+/* Short pages fill the screen instead of ending in an empty band. */
+@media(max-width:760px){body main{min-height:calc(100dvh - 83px);box-sizing:border-box}}
+
+/* Section headings */
+.editorial-sectionhead h2{font-size:24px;line-height:1.4}
+.section-flourish{display:none}
+
+/* Home: four shortcuts as clean, large cards */
+body .journey-link{min-height:0;padding:16px 14px 16px;border:1px solid var(--ui-line);border-top:1px solid var(--ui-line);border-radius:var(--ui-radius);background:#fff;box-shadow:var(--ui-shadow);gap:2px}
+body .journey-number{display:none}
+body .journey-icon{width:48px;height:48px;border-radius:14px;transform:none;margin-bottom:12px}
+body .journey-icon>.ui-icon{transform:none;width:26px;height:26px}
+body .journey-link strong{font-size:18px;font-weight:700;color:var(--ui-ink)}
+body .journey-link small{font-size:14px!important;line-height:1.5;color:var(--ui-sub);padding-right:0;max-width:none;margin-top:2px}
+body .journey-arrow{top:22px;bottom:auto;right:12px;width:32px;height:32px;background:transparent;border:0;color:#7f9aa0}
+body .journey-arrow .ui-icon{width:20px;height:20px}
+@media(max-width:760px){body .editorial-links{gap:12px;margin-bottom:36px}}
+
+/* Onboard: event cards never clip their titles */
+@media(max-width:760px){
+ body .ship-event-grid{grid-template-columns:1fr;gap:12px}
+ body .ship-event-grid>*{min-height:0;grid-column:auto}
+ body .ship-event-grid h3{font-size:20px;line-height:1.45;overflow-wrap:anywhere}
+ body .event-top{font-size:14px}
+ body .event-symbol{font-size:26px;margin:8px 0 4px}
+ body header.is-onboard .headerActions .testbtn span{display:none}
+ body header.is-onboard .headerActions .testbtn{min-width:40px}
+ body header.is-onboard .brand{max-width:150px}
+}
+
+/* Primary actions are easy to hit */
+@media(max-width:760px){
+ body .primary{min-height:52px;font-size:17px;font-weight:700}
+ body .textbtn{font-size:16px;min-height:44px}
+ body .community-compact-heading .primary{min-height:52px;padding:10px 16px}
+}
+
+/* Details/summary rows look tappable */
+details>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";flex:none;width:9px;height:9px;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;margin:0 4px 0 2px}
+details[open]>summary::before{transform:rotate(45deg)}
+details.community-more>summary::before{content:none}
+
+/* Round 2b */
+body .help-topics button{border-radius:14px;min-height:56px;font-size:17px;box-shadow:var(--ui-shadow);border:1px solid var(--ui-line)}
+body .help-topics>span{font-size:15px!important;font-weight:700;color:var(--ui-sub)}
+body .account-compact{gap:12px;padding:14px 14px 14px 16px;border-radius:var(--ui-radius);align-items:center}
+body .account-compact strong{font-size:17px}
+body .account-compact small{display:block;line-height:1.5;color:var(--ui-sub)}
+body .account-compact .account-link{font-size:16px!important;min-height:48px;padding:8px 18px}
