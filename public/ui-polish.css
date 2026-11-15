@@ -1,0 +1,160 @@
+/* UI polish layer (loaded last). Clean header, bold hero, readable type, large touch targets. */
+:root{--ui-ink:#17323d;--ui-sub:#4f6268;--ui-teal:#087985;--ui-teal-dark:#075b64;--ui-red:#a43f38;--ui-paper:#fffdf8;--ui-line:#e6dccb;--ui-radius:16px;--ui-shadow:0 1px 2px #3b2f1a12,0 10px 26px #3b2f1a14}
+
+/* Japanese line breaking: break at phrase boundaries where the browser supports it, never leave one stray character. */
+h1,h2,h3,summary,label,button,.hand-note{word-break:auto-phrase;line-break:strict}
+h1,h2,h3{text-wrap:balance}
+p,small,li{line-break:strict;text-wrap:pretty}
+.nb{display:inline-block}
+
+/* ---------- Header ---------- */
+.headerActions .testbtn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#44595f}
+.headerActions .testbtn svg{width:22px;height:22px;flex:none}
+.headerActions .testbtn::after{content:none!important}
+.profile-caption{font-size:12px!important;font-weight:600}
+.boarding-entry span{font-size:12px!important;font-weight:700}
+@media(max-width:760px){
+ body header,body header.is-onboard{display:flex!important;align-items:center;gap:6px;height:68px;min-height:68px;padding:0 8px 0 12px}
+ body header .brand{flex:1 1 0;min-width:0;width:auto!important;max-width:178px;margin:0 auto 0 0}
+ body header.is-onboard .brand .brand-logo,body header .brand .brand-logo{width:100%;max-width:178px;height:auto}
+ body header .headerActions,body header.is-onboard .headerActions{display:flex!important;align-items:center;gap:2px;flex:0 0 auto}
+ body header .headerActions>button,body header.is-onboard .headerActions>button{position:relative!important;inset:auto!important;margin:0;flex:0 0 auto}
+ body header .headerActions .testbtn,body header.is-onboard .headerActions .testbtn,
+ body header .headerActions .profilebtn,body header.is-onboard .headerActions .profilebtn,
+ body header .headerActions .boarding-entry{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:auto;min-width:50px;max-width:none;height:56px;min-height:56px;padding:4px 5px;font-size:11px!important;line-height:1.15;white-space:nowrap;overflow:visible;border-radius:12px}
+ body header .headerActions .testbtn{background:transparent;border:0;box-shadow:none}
+ body header .headerActions .testbtn svg{width:25px;height:25px}
+ body header .headerActions .testbtn span,body header .profile-caption,body header .boarding-entry span{font-size:11px!important;min-height:0;display:block}
+ body header .headerActions .boarding-entry{min-width:58px;padding:4px 6px}
+ body header .headerActions .boarding-entry svg{width:25px;height:25px}
+ body header .headerActions .notification-bell{width:44px;height:44px;min-height:44px;padding:9px}
+ body header .headerActions .notification-bell svg{width:24px;height:24px}
+ body header .headerActions .profilebtn>span:first-child,body header .headerActions .profilebtn .avatar-image{width:34px;height:34px}
+ body header .headerActions[hidden],body header .headerActions .testbtn[hidden],body header .headerActions .boarding-entry[hidden]{display:none!important}
+}
+@media(max-width:360px){
+ body header .headerActions .testbtn span{display:none}
+ body header .headerActions .testbtn{min-width:40px;display:flex!important}
+ body header .brand{max-width:132px}
+}
+
+/* ---------- Preview banner (verification tool): one compact row ---------- */
+.preview-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 18px;padding:7px 7px 7px 14px;border-radius:12px;background:#fff3d6;border:1px solid #efd9a2;font-size:13px!important;line-height:1.45;color:#6a5122}
+.preview-banner b{font-weight:700;color:#4e3a14}
+.preview-banner button{flex:none;min-height:38px;padding:4px 14px;font-size:13px!important;border-radius:10px;box-shadow:none;border-color:#e0c684;background:#fffaf0}
+.sample-reservation-note{border-radius:12px}
+
+/* ---------- Home: greeting + countdown ---------- */
+.editorial-welcome h1{font-weight:700;line-height:1.45;overflow-wrap:normal}
+.voyage-counter.is-countdown>span{white-space:nowrap}
+.voyage-counter.is-countdown>span:first-child{font-size:13px!important;font-weight:600}
+@media(max-width:760px){
+ .editorial-welcome h1{font-size:21px}
+ .voyage-counter.is-countdown{min-width:112px;padding:8px 12px 6px}
+ .voyage-counter.is-countdown strong{font-size:40px}
+}
+
+/* ---------- Home: hero photograph ---------- */
+@media(max-width:760px){
+ body .ocean-story{display:flex;height:auto;min-height:330px;margin-inline:0;border:0;outline:0;border-radius:20px;overflow:hidden;box-shadow:var(--ui-shadow);
+  background-image:linear-gradient(180deg,rgba(9,30,40,.42) 0%,rgba(9,30,40,0) 26%,rgba(9,30,40,.10) 46%,rgba(9,30,40,.90) 100%),url('assets/voyage-hero.webp');background-size:cover;background-position:62% center}
+ body .ocean-overlay{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;width:100%;box-sizing:border-box;padding:18px 20px 22px}
+ body .ocean-label{margin:0 0 auto;font-size:10px;letter-spacing:.14em;padding:6px 11px}
+ body .ocean-overlay h2{font-size:30px;line-height:1.38;font-weight:700;letter-spacing:.03em;margin:0 0 8px;text-shadow:0 2px 14px #06202b99}
+ body .ocean-overlay p{font-size:15px!important;line-height:1.7;max-width:none;margin:0;text-shadow:0 1px 8px #06202b99}
+ body .hero-imagenote{top:16px;right:14px;bottom:auto;font-family:inherit;font-size:11px!important;letter-spacing:0;padding:3px 10px;border-radius:99px;background:rgba(9,30,40,.5)}
+}
+
+/* ---------- Page intro ---------- */
+@media(max-width:760px){
+ body .page-intro{padding:18px 18px 20px;margin-bottom:22px;border-radius:14px;min-height:0}
+ body .page-intro h1{font-size:27px;margin:4px 0 8px}
+ body .page-intro p{font-size:15px;line-height:1.7}
+}
+
+/* ---------- Bottom navigation ---------- */
+@media(max-width:760px){
+ body nav button{font-size:12px;font-weight:600;color:#55676d;min-height:60px}
+ body nav button.active{color:#06707b}
+ body nav .navicon .ui-icon{width:26px;height:26px}
+}
+
+/* ---------- Community: the notice row sits under the heading ---------- */
+.community-service{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:0 0 14px;padding:10px 12px;border-radius:12px;background:#f6f1e4;border:0}
+.community-service p{flex:1 1 100%;margin:0;line-height:1.55;color:var(--ui-sub)}
+.community-service button{min-height:40px;padding:4px 14px;border-radius:10px;box-shadow:none;background:#fff}
+
+/* ---------- Home: hero on wide screens ---------- */
+@media(min-width:761px){
+ body .ocean-story{height:auto;min-height:340px;display:flex;border:0;outline:0;border-radius:24px;overflow:hidden;box-shadow:var(--ui-shadow);
+  background-image:linear-gradient(90deg,rgba(9,30,40,.86) 0%,rgba(9,30,40,.55) 42%,rgba(9,30,40,.05) 75%),url('assets/voyage-hero.webp');background-size:cover;background-position:center 55%}
+ body .ocean-overlay{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:34px 40px 38px}
+ body .ocean-label{margin-bottom:auto}
+ body .ocean-overlay h2{font-size:40px;font-weight:700;line-height:1.4;margin:0 0 10px}
+ body .ocean-overlay p{font-size:17px!important}
+ body .departure-sticker{display:none}
+ body .hero-imagenote{top:20px;right:20px;bottom:auto;font-family:inherit;font-size:12px!important;padding:4px 12px;border-radius:99px;background:rgba(9,30,40,.5)}
+}
+
+/* ---------- Home: reservation card reads like a ticket ---------- */
+body .voyage-pass{border:1px solid var(--ui-line);border-left:6px solid var(--ui-red);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow);background:#fff}
+.pass-status{font-weight:700;color:#8a6a2f}
+.pass-main p{color:var(--ui-sub)}
+@media(max-width:760px){
+ body .voyage-pass{grid-template-columns:1fr;padding:18px 18px 18px 16px;gap:14px}
+ body .voyage-pass .pass-mark{display:none}
+ body .voyage-pass .pass-main{grid-column:1}
+ body .pass-main h2{font-size:23px;margin-bottom:6px}
+ body .pass-main p{font-size:15px!important;line-height:1.6}
+ body .voyage-pass>.primary{font-size:17px;min-height:56px;padding:12px 18px;border-radius:14px;margin-top:0}
+ body .voyage-pass>.primary .ui-icon{width:22px;height:22px}
+}
+
+/* ---------- Home: notice row ---------- */
+body .editorial-notice{border-radius:14px;padding:14px 14px!important;background:#f6f1e4;border:0;box-shadow:none;gap:12px;text-align:left}
+.editorial-notice span{font-size:15px!important;line-height:1.5}
+.editorial-notice .notice-pill{flex:none;font-size:13px!important;font-weight:700;background:#fff;color:#8a5a1c;border-radius:99px;padding:4px 12px}
+
+/* ---------- Home: "little joys" photos ---------- */
+@media(max-width:760px){
+ body .moments-board{border:0;padding:8px 0 4px;margin:36px 0 40px;gap:20px 14px}
+ body .moments-heading{display:block}
+ body .moments-heading h2{font-size:26px;line-height:1.45;margin:4px 0 8px}
+ body .moments-heading h2 br,body .moments-heading p br{display:none}
+ body .moments-heading p{font-size:15px!important;line-height:1.7;color:var(--ui-sub)}
+ body .polaroid{padding:8px 8px 10px;border-radius:12px;transform:rotate(-1.5deg);box-shadow:var(--ui-shadow)}
+ body .polaroid.moment-port{transform:rotate(1.5deg)}
+ body .polaroid:before{display:none}
+ body .polaroid .moment-photo{height:150px;border-radius:8px;margin-bottom:10px}
+ body .polaroid .hand-note{font-size:15px!important;line-height:1.5;font-weight:600;color:var(--ui-ink);font-family:inherit}
+ body .polaroid small{display:none}
+ body .polaroid .card-destination{font-size:14px!important;margin-top:10px;padding:8px 10px;min-height:44px;border-radius:10px}
+}
+
+/* ---------- Stamp book ---------- */
+@media(max-width:760px){
+ body .stamp-panel .topline{display:block}
+ body .stamp-panel .topline h1{font-size:22px;margin-bottom:12px}
+ body .stamp-panel .topline .primary,body .topline>.primary{width:100%;min-height:56px;font-size:17px}
+ body .stats{gap:8px;justify-content:space-between}
+ body .stats span{flex:1;text-align:center;background:#fff;border:1px solid var(--ui-line);border-radius:12px;padding:10px 4px;line-height:1.4}
+ body .stats strong{display:block;font-size:30px;line-height:1.2}
+ body .stamp-tabs button{font-size:16px}
+ body .stamp-tabs small{font-size:13px!important;padding:1px 8px}
+}
+
+/* ---------- Dialogs ---------- */
+dialog .close{top:12px;right:12px;width:48px;height:48px;border-radius:50%;background:#f1ece1;box-shadow:none;font-size:26px;line-height:1;color:#3d4f55}
+dialog .close:hover{background:#e7dfce;transform:none;box-shadow:none}
+dialog h2{padding-right:48px;line-height:1.4}
+@media(max-width:760px){body dialog{padding:30px 20px 24px;border-radius:24px;border-width:0;box-shadow:0 28px 80px #102e4655}}
+.statuslist button{min-height:54px;font-size:17px;box-shadow:none}
+
+/* ---------- Login ---------- */
+.google-login{display:flex!important;justify-content:center;gap:12px;width:100%;box-sizing:border-box;min-height:56px;font-size:17px;background:#fff!important;color:#1f1f1f!important;border:1px solid #8a8f8c!important;box-shadow:0 2px 0 #c9cdca!important}
+.google-login svg{width:22px;height:22px;flex:none}
+.email-login-actions{flex-direction:column}
+.email-login-actions button{flex:none;width:100%;min-height:54px;font-size:17px}
+.email-login input{min-height:54px}
+.email-login .textbtn{justify-self:start;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.pass-main p b{font-weight:inherit}

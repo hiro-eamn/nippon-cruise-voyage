@@ -59,7 +59,7 @@ main{background:linear-gradient(90deg,#c5b99f14,transparent 38px),#fffdf8;border
 .port-return-estimate span,.port-return-estimate small,.port-return-estimate span small,.port-card-link,
 .port-guide-settings summary,.port-guide-settings p,.port-guide-settings label,.port-locate-button span,
 .hero-imagenote,.selected small,.stamp-tabs button small,.sample-reservation-note,.sample-reservation-note span,.sample-reservation-note small,.leaflet-tooltip{font-size:14px!important}
-.tiny-kicker,.testbtn,.profile-caption,.boarding-entry span{font-size:13px!important}
+.tiny-kicker{font-size:13px!important}
 .port-pin-key{font-size:11px}
 .ocean-overlay p,.moments-heading p,.card-destination,.journal-read,#main p>small,.onboard-course-title p,
 .port-guide-heading .textbtn,[class*="port-spots"] p{font-size:14px!important}
