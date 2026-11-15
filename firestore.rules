@@ -65,7 +65,7 @@ service cloud.firestore {
       allow create: if validPost(request.resource.data)
         && (isMe(request.resource.data.authorId) || isAdmin());
       allow update: if likeOnly()
-        || (isMe(resource.data.authorId) && validPost(request.resource.data)
+        || ((isMe(resource.data.authorId) || isAdmin()) && validPost(request.resource.data)
             && request.resource.data.authorId == resource.data.authorId
             && request.resource.data.createdAt == resource.data.createdAt
             && request.resource.data.likedBy == resource.data.likedBy);
@@ -76,7 +76,7 @@ service cloud.firestore {
         allow create: if isMe(request.resource.data.authorId)
           && request.resource.data.text is string
           && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 300;
-        allow update: if isMe(resource.data.authorId)
+        allow update: if (isMe(resource.data.authorId) || isAdmin())
           && request.resource.data.authorId == resource.data.authorId
           && request.resource.data.text is string
           && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 300;
