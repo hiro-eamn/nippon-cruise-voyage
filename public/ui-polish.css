@@ -317,6 +317,16 @@ body .voyage-counter.is-countdown strong{color:var(--ui-red)}
 }
 @media(max-width:760px){body nav button{white-space:nowrap}}
 @media(max-width:360px){body nav button{font-size:12px;letter-spacing:-.02em}body nav button.home{margin:0 2px}body .ocean-overlay h2{font-size:25px}body .ocean-overlay{padding-inline:18px}}
+/* Opening notebook: a random voyage senryu, written vertically, held long enough to read. Tap to skip. */
+@keyframes journal-reveal-slow{0%,90%{opacity:1}100%{opacity:0;visibility:hidden}}
+.journal-opening.is-opening{animation:journal-reveal-slow 6.8s ease forwards}
+.journal-paper .journal-poem.is-senryu{writing-mode:vertical-rl;display:block;white-space:nowrap;text-align:start;font-size:21px!important;line-height:2.2;letter-spacing:.14em;color:#4a3b22;font-weight:600;margin:0 auto}
+.journal-poem.is-senryu>span{display:block}
+.journal-poem.is-senryu>span:nth-child(2){padding-top:1.1em}
+.journal-poem.is-senryu>span:nth-child(3){padding-top:2.2em}
+.journal-poem.is-senryu .senryu-seal{display:block;width:auto;height:auto;block-size:auto;inline-size:fit-content;margin:0 14px 0 0;padding:6px 1px;border:1.5px solid #a43f38;border-radius:3px;color:#a43f38;font-style:normal;font-size:12px;line-height:1.5;letter-spacing:.1em;font-weight:700;position:static}
+.journal-poem.is-senryu .senryu-seal::after{content:none}
+.journal-opening::after{content:"画面にふれると進みます";position:absolute;left:0;right:0;bottom:max(26px,env(safe-area-inset-bottom));text-align:center;font-size:15px;color:#5f5440;letter-spacing:.08em}
 /* Booking card: straight accent bar instead of a curved thick border. */
 body .voyage-pass{border-left:1px solid var(--ui-line);background:linear-gradient(90deg,var(--ui-red) 6px,#fff 6px)}
 @media(max-width:760px){body .voyage-pass{padding-left:22px}}
