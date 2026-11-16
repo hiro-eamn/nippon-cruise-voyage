@@ -1,0 +1,182 @@
+/* "Ai" theme (indigo / white / vermilion). Loaded last: a full visual redesign on top of the older layers.
+   Quiet surfaces, one deep indigo, one vermilion accent, Mincho headings, pill buttons. Sizes stay senior-friendly. */
+:root{
+ --ai-bg:#f5f4f0;--ai-card:#fff;--ai-ink:#10202b;--ai-sub:#4b5964;--ai-navy:#0c3948;--ai-navy-2:#14506a;--ai-red:#c5402c;--ai-gold:#86682a;--ai-line:#e3e1da;--ai-soft:#eef2f4;--ai-sand:#f1ede2;
+ --ai-radius:20px;--ai-shadow:0 1px 2px rgba(16,32,43,.04),0 10px 28px rgba(16,32,43,.07);
+ --ai-serif:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+ --ink:#10202b;--teal:#0c3948;--pale:#eef2f4;--sand:#f5f4f0;--line:#e3e1da;--muted:#4b5964;--gold:#86682a;--coral:#c5402c;--navy:#0c3948;--red:#c5402c;--paper:#fff;
+ --ui-ink:#10202b;--ui-sub:#4b5964;--ui-teal:#0c3948;--ui-teal-dark:#082833;--ui-red:#c5402c;--ui-paper:#fff;--ui-line:#e3e1da;--ui-radius:20px;--ui-shadow:0 1px 2px rgba(16,32,43,.04),0 10px 28px rgba(16,32,43,.07)
+}
+
+/* ---------- Canvas ---------- */
+html body{background:var(--ai-bg);background-image:none;color:var(--ai-ink)}
+html body main{background:none;border:0;box-shadow:none;border-radius:0}
+@media(max-width:760px){html body main{margin-top:0;padding-top:22px}}
+body main h1,body main h2,body dialog h2{font-family:var(--ai-serif);font-weight:600;letter-spacing:.04em;color:var(--ai-ink)}
+body main h3{color:var(--ai-ink)}
+body .tiny-kicker,body .eyebrow{color:var(--ai-gold);font-family:inherit;font-weight:700;letter-spacing:.18em}
+body .muted,body small.muted,body p.muted,body section p.muted,body p.demo{color:var(--ai-sub)}
+body p.demo{border-top:1px solid var(--ai-line)}
+body hr{border-color:var(--ai-line)}
+body a{color:var(--ai-navy)}
+
+/* ---------- Header ---------- */
+html body header,html body header.is-onboard{background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--ai-line);box-shadow:none}
+body header .headerActions .testbtn,body header .headerActions .notification-bell,body header .headerActions .profilebtn{color:var(--ai-navy)}
+body header .headerActions .boarding-entry{background:var(--ai-navy);color:#fff;border:0;box-shadow:none;border-radius:14px}
+body header .headerActions .boarding-entry:hover{background:var(--ai-navy-2)}
+body .notification-badge{background:var(--ai-red)!important;border-color:#fff!important}
+
+/* ---------- Bottom navigation: five equal tabs, the current one marked by a vermilion bar ---------- */
+html body nav{background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--ai-line);box-shadow:none}
+html body nav button,html body nav button.home,html body nav button.home.active{position:relative;background:none;box-shadow:none;color:#5a6873;border-radius:12px;font-weight:600}
+html body nav button.home,html body nav button.home.active{width:20%;height:auto;min-height:60px;margin:0;padding:8px 0;gap:2px;flex-shrink:1}
+html body nav button.home .navicon{margin:0}
+html body nav button.active,html body nav button.home.active{color:var(--ai-navy);background:none;font-weight:700}
+html body nav button.active::before{content:"";position:absolute;top:-7px;left:50%;width:34px;height:3px;margin-left:-17px;border-radius:0 0 3px 3px;background:var(--ai-red)}
+@media(min-width:761px){html body nav button.home,html body nav button.home.active{width:155px;min-height:0;padding:7px 6px;border-radius:12px}html body nav button.active::before{top:-13px}}
+@media(max-width:760px){html body nav button.home,html body nav button.home.active{font-size:13px;line-height:inherit}html body nav button.home .navicon .ui-icon{width:26px;height:26px}}
+
+/* ---------- Buttons ---------- */
+body .primary,body a.account-link.primary,body button.primary.wide{background:var(--ai-navy);background-image:none;color:#fff;border:0;border-radius:999px;box-shadow:none;font-weight:700;letter-spacing:.04em}
+body .primary:hover,body a.account-link.primary:hover{background:var(--ai-navy-2);box-shadow:none;transform:none}
+body .primary:active{transform:scale(.985)}
+body .textbtn{color:var(--ai-navy);font-weight:700}
+body .preview-banner button,body .community-service button,body .empty button:not(.primary),body .account-compact .account-link:not(.primary),body .help-topics button,body .modal-close-bottom,body .notification-heading button,body .statuslist button{background:#fff;color:var(--ai-navy);border:1.5px solid #c5ccd2;border-radius:999px;box-shadow:none;font-weight:700}
+body .help-topics button{border-radius:16px;border-width:1px;border-color:var(--ai-line);box-shadow:var(--ai-shadow)}
+body .statuslist button{border-radius:14px}
+body button:focus-visible,body a:focus-visible{outline:3px solid #e0a23a;outline-offset:2px}
+
+/* ---------- Surfaces ---------- */
+body .card,body section.card,body .voyage-pass,body .journey-link,body .ship-location,body .journey-journal,body .stamp-panel,body .ship-notice-board,body .map-home-card,body .account-compact,body .empty,body .polaroid,body .ship-place-detail,body .editorial-notice,body .voyage-counter.is-countdown,body .card.supportHero,body .card.services-card,body .card.feedback-entry,body .card.faq-section,body .card.booking-card,body .card.preparation-card{background:var(--ai-card);background-image:none;border:1px solid var(--ai-line);border-radius:var(--ai-radius);box-shadow:var(--ai-shadow)}
+body .empty,body .empty.community-empty{border-style:solid;box-shadow:none;background:#fff}
+body .card.booking-card{overflow:hidden}
+
+/* Page title block: plain, large, no box */
+body .page-intro{background:none;background-image:none;border:0;box-shadow:none;border-radius:0;padding:6px 2px 4px;margin-bottom:20px;min-height:0}
+body .page-intro .intro-emblem{display:none}
+body .page-intro h1{font-size:32px;line-height:1.35;margin:6px 0 8px}
+body .page-intro p{color:var(--ai-sub);max-width:none}
+body .page-intro::before,body .page-intro::after{content:none}
+
+/* Chips and tags */
+body .tag,body .chip,body div.chip,body .sample-clock,body .port-map-sample,body .notice-pill,body .booking-details .tag{background:var(--ai-sand);border:0;border-radius:999px;color:#5f4a1c;font-weight:700}
+body .event-live{background:var(--ai-red);border:0;color:#fff;border-radius:999px}
+body .preview-banner{background:#fff;border:1px solid var(--ai-line);color:var(--ai-sub);border-radius:14px}
+body .preview-banner b{color:var(--ai-ink)}
+body .sample-reservation-note{background:#fff;border:1px solid var(--ai-line);border-radius:14px}
+body .sample-reservation-note>span{background:var(--ai-sand);border:0;color:#5f4a1c}
+
+/* ---------- Home ---------- */
+body .voyage-counter.is-countdown{color:var(--ai-sub)}
+body .voyage-counter.is-countdown strong{color:var(--ai-red)}
+body .editorial-welcome h1{font-family:var(--ai-serif);font-weight:600}
+body .voyage-pass{background:#fff}
+body .pass-status{color:var(--ai-gold)}
+@media(max-width:760px){body .voyage-pass{padding-left:20px}body .ocean-story{border-radius:24px}}
+body .editorial-notice{box-shadow:none}
+body .hand-note{border:0}
+body .polaroid,body .polaroid.moment-port{transform:none;padding:0 0 14px;overflow:hidden}
+body .polaroid .moment-photo{border-radius:0;margin:0 0 12px;width:100%}
+body .polaroid .hand-note{display:block;padding:0 14px;color:var(--ai-ink)}
+body .polaroid .card-destination{margin:10px 12px 0;background:var(--ai-soft);border:0;color:var(--ai-navy);border-radius:999px;font-weight:700}
+body .journey-icon{background:var(--ai-soft);color:var(--ai-navy);border-radius:50%}
+body .journey-arrow{color:#8a98a2}
+body .ship-location .ui-icon{color:var(--ai-navy)}
+body .journal-photo{border:0}
+body .journal-read{color:var(--ai-navy);border-top-color:var(--ai-line)}
+body .map-home-card .map-home-art{border:0;border-radius:14px;overflow:hidden}
+@media(max-width:760px){body .map-home-card{padding:10px 10px 14px}}
+
+/* Onboard events: white cards, the live one in indigo */
+body .ship-event,body .ship-event.event-craft,body .ship-event.event-show{background:#fff;background-image:none;border:1px solid var(--ai-line);border-radius:var(--ai-radius);box-shadow:var(--ai-shadow);color:var(--ai-ink)}
+body .ship-event.event-music{background:var(--ai-navy);background-image:none;border-color:var(--ai-navy);color:#fff}
+body .ship-event h3{font-family:var(--ai-serif);font-weight:600}
+body .ship-event.event-music h3,body .ship-event.event-music .event-place,body .ship-event.event-music .event-bottom,body .ship-event.event-music .event-top{color:#fff}
+body .ship-notice-board{border-width:1px}
+body .ship-notice,body .ship-notice.is-important{border-top-color:var(--ai-line);box-shadow:none}
+body .ship-notice.is-important .notice-label{color:var(--ai-red)}
+
+/* ---------- My voyage ---------- */
+body .ticket-strip{background:var(--ai-sand);border:0}
+body .timeline{border-left-color:var(--ai-line)}
+body label.check{border-bottom-color:var(--ai-line)}
+body label.check input{accent-color:var(--ai-navy)}
+body .prep-progress div,body .progress{background:#e7e6e1}
+body .progress>div,body .prep-progress div>div{background:var(--ai-red)}
+
+/* ---------- Stamp book ---------- */
+body .stamp-tabs{background:#e9e8e3;border-radius:999px;padding:4px}
+body .stamp-tabs button{border-radius:999px;color:var(--ai-sub)}
+body .stamp-tabs button.selected{background:#fff;color:var(--ai-navy);box-shadow:0 1px 3px rgba(16,32,43,.14)}
+body .stamp-tabs small{background:var(--ai-soft);color:var(--ai-navy)}
+body .stats{border-bottom-color:var(--ai-line)}
+body .stats span{border-color:var(--ai-line)}
+body .stats strong{color:var(--ai-navy);font-family:var(--ai-serif)}
+body .stamp-panel .map,body div.map{background:#e4ecf0;border:0;border-radius:16px;box-shadow:none}
+body button.port{border-color:#9fb3bf;color:var(--ai-navy);box-shadow:0 1px 3px rgba(16,32,43,.12)}
+
+/* ---------- Community ---------- */
+body .community-tabs{border-bottom-color:var(--ai-line)}
+body .community-tabs button.active,body .community-tabs button.selected,body .community-tabs button[aria-selected="true"]{color:var(--ai-navy);border-bottom-color:var(--ai-red);background:none}
+body .community-service{background:#fff;border:1px solid var(--ai-line);border-radius:14px}
+body .empty-symbol,body .following-count,body .support-symbol{background:var(--ai-soft);color:var(--ai-navy)}
+body main select,body main details.community-more>summary{background:#fff;border:1px solid var(--ai-line);border-radius:12px}
+
+/* ---------- Support / my page ---------- */
+body details.faq{border-bottom-color:var(--ai-line)}
+body .faq p{background:var(--ai-soft);color:var(--ai-ink)}
+body .account-compact{box-shadow:none}
+
+/* ---------- Ship map ---------- */
+body .ship-diagram{background:#e4ecf0}
+body .ship-diagram-hull{background:#fff;border-color:#b3c3cd}
+body button.ship-place{background:var(--ai-soft);color:var(--ai-ink)}
+body button.ship-place.is-selected{background:#dbe9f0;border-color:var(--ai-navy)}
+
+/* ---------- Second pass: leftovers from older layers ---------- */
+html body main h1,html body main h2,html body dialog h2,html body .page-intro h1,html body .editorial-welcome h1{font-family:var(--ai-serif)!important;font-weight:600}
+html body nav button.home .navicon{display:block;font-size:24px;line-height:1.3;height:auto;margin:0}
+html body .journey-link .journey-icon{background:var(--ai-soft);color:var(--ai-navy)}
+html body section.card,html body .card{border:1px solid var(--ai-line);box-shadow:var(--ai-shadow)}
+html body main button:not([class]),html body .ship-location button,html body .empty button:not(.primary){background:#fff;background-image:none;color:var(--ai-navy);border:1.5px solid #c5ccd2;border-radius:999px;box-shadow:none;font-weight:700}
+html body .stamp-tabs button{box-shadow:none;border:0;background:none}
+html body .stamp-tabs button.selected{background:#fff;box-shadow:0 1px 3px rgba(16,32,43,.14)}
+html body .empty,html body .stamp-panel .empty{background:#fff;border:1px solid var(--ai-line)}
+html body .booking-card summary,html body details>summary{color:var(--ai-navy)}
+html body .preparation-card .tiny-kicker,html body .preparation-card h2{border-color:var(--ai-line)}
+
+/* ---------- Third pass ---------- */
+html body nav button.home,html body nav button.home.active{padding:11px 0 5px}
+html body .voyage-pass>.primary{border-radius:999px}
+html body button[onclick^="selectShipMapDeck"]{background:#fff;background-image:none;color:var(--ai-navy);border:1.5px solid #c5ccd2;border-radius:999px;box-shadow:none;font-weight:700}
+html body button[onclick^="selectShipMapDeck"].selected{background:var(--ai-navy);border-color:var(--ai-navy);color:#fff}
+html body button.ship-place{background:var(--ai-soft)!important;color:var(--ai-ink)}
+html body button.ship-place.is-selected{background:#d6e6ee!important;border-color:var(--ai-navy)}
+html body .notification-item{background:#fff;border:1px solid var(--ai-line);border-left:4px solid var(--ai-line);border-radius:14px;box-shadow:none}
+html body .notification-item.is-unread{background:#fff;border-left-color:var(--ai-red)}
+html body .guide-stage{background:var(--ai-sand);color:#5f4a1c;border:0}
+html body .guide-step-dots .active,html body .guide-step-dots [aria-current],html body .guide-step-dots .is-active{background:var(--ai-navy)}
+html body .guide-features li::before,html body .guide-features li::marker{color:var(--ai-red)}
+html body .ocean-label{background:none;border:0;border-radius:0;padding:0;color:#e8cf9b;font-weight:700;letter-spacing:.2em}
+@media(min-width:761px){
+ html body header .testbtn{background:#fff;border:1px solid var(--ai-line);border-radius:999px;box-shadow:none;color:var(--ai-navy)}
+ html body header .notification-bell{background:var(--ai-soft);color:var(--ai-navy)}
+ html body .ocean-label{font-size:12px}
+}
+
+html body .support-options>.card,html body .support-options>.card:nth-child(n){border:1px solid var(--ai-line)!important;box-shadow:var(--ai-shadow)!important;background:#fff}
+html body .stamp-panel::before{content:none}
+@media(max-width:760px){html body .stamp-panel{padding:16px 14px}}
+@media(min-width:761px){html body nav button.home,html body nav button.home.active{padding:7px 6px}}
+
+/* ---------- Dialogs, toast ---------- */
+body dialog{background:#fff;color:var(--ai-ink)}
+body dialog .close{background:var(--ai-soft);color:var(--ai-navy)}
+body dialog .close:hover{background:#e1e8ec}
+body label.check input,body dialog input[type=checkbox]{accent-color:var(--ai-navy)}
+body #toast{background:var(--ai-navy);color:#fff}
+
+/* ---------- Opening notebook in indigo ---------- */
+body .journal-opening{background:var(--ai-bg)}
+body .journal-cover{background:radial-gradient(ellipse at 15% 8%,#2b6a8266,transparent 48%),linear-gradient(100deg,#082833,#12485c 16%,#0c3948 55%,#07242e)!important}
