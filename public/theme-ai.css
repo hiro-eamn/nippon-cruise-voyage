@@ -180,3 +180,47 @@ body #toast{background:var(--ai-navy);color:#fff}
 /* ---------- Opening notebook in indigo ---------- */
 body .journal-opening{background:var(--ai-bg)}
 body .journal-cover{background:radial-gradient(ellipse at 15% 8%,#2b6a8266,transparent 48%),linear-gradient(100deg,#082833,#12485c 16%,#0c3948 55%,#07242e)!important}
+
+/* ---------- Polish pass (design-skill review): cool neutrals, fewer boxes, consistent details ---------- */
+:root{
+ --ai-bg:#f2f5f6;--ai-line:#dde4e8;--ai-soft:#edf2f4;--ai-sub:#47565f;
+ --ai-shadow:0 1px 2px rgba(12,57,72,.05),0 6px 18px rgba(12,57,72,.05);
+ --sand:#f2f5f6;--line:#dde4e8;--pale:#edf2f4;--muted:#47565f;--ui-line:#dde4e8;--ui-sub:#47565f;--ui-shadow:0 1px 2px rgba(12,57,72,.05),0 6px 18px rgba(12,57,72,.05)
+}
+/* Type: balanced headings, Japanese line breaking, aligned digits */
+html body main h1,html body main h2,html body main h3,html body dialog h2{text-wrap:balance;line-break:strict}
+html body main p,html body dialog p{line-break:strict}
+html body .voyage-counter,html body .event-top,html body .stats,html body .stamp-tabs small,html body .prep-progress,html body .community-feed-heading{font-variant-numeric:tabular-nums}
+/* Shadow only on primary cards; secondary rows are flat */
+html body .journey-link,html body .editorial-notice,html body .community-service,html body .help-topics button,html body .account-compact,html body .preview-banner,html body .sample-reservation-note{box-shadow:none!important}
+html body .journey-link{border-radius:16px}
+/* Boxes inside a card lose their own border: tint instead */
+html body .stamp-panel .stats{border-bottom:0;padding-bottom:0}
+html body .stamp-panel .stats span{background:var(--ai-soft);border:0;border-radius:14px;color:var(--ai-sub)}
+html body .stats strong{font-family:inherit;font-weight:700;color:var(--ai-navy)}
+html body .stamp-panel .empty{background:var(--ai-soft);border:0;box-shadow:none}
+html body .stamp-panel .empty button:not(.primary){border-color:#b9c6ce}
+html body .collection-caption{margin:22px 2px 12px}
+html body .collection-caption .hand-note{color:var(--ai-sub);font-family:inherit;font-size:15px}
+html body .collection-caption>span:last-child{display:none}
+/* Community title: same order as other pages (title, then description) */
+html body .community-compact-heading{align-items:flex-end}
+html body .community-compact-heading>div{display:flex;flex-direction:column-reverse;gap:4px;min-width:0}
+html body .community-compact-heading h1{font-size:32px;line-height:1.35;margin:0}
+html body .community-compact-heading .tiny-kicker{font-size:14px!important;letter-spacing:0;font-weight:400;color:var(--ai-sub);line-height:1.6}
+@media(max-width:760px){html body .community-compact-heading{flex-wrap:wrap}html body .community-compact-heading>div{flex:1 1 100%}html body .community-compact-heading .primary{width:100%;justify-content:center}}
+/* Notifications: an unread dot instead of a coloured side bar */
+html body .notification-item,html body .notification-item.is-unread{border:1px solid var(--ai-line);border-radius:16px}
+html body .notification-item.is-unread{border-color:#b9c9d2;background:#fff radial-gradient(circle at calc(100% - 16px) 16px,var(--ai-red) 0 4.5px,transparent 5.5px)}
+/* Home spacing */
+html body .editorial-notice+.editorial-sectionhead{margin-top:28px}
+html body .section-flourish{display:none}
+/* Motion: calm for people who ask for it (the opening notebook keeps its timing) */
+@media(prefers-reduced-motion:reduce){html body *:not(.journal-opening):not(.journal-opening *){animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+html body .port-existing .stats strong,html body .stamp-panel .stats strong{font-family:inherit;font-weight:700;color:var(--ai-navy)}
+html body .community-compact-heading h1{color:var(--ai-ink);font-weight:600;letter-spacing:.04em}
+html body .notification-item.is-unread{background:#fff}
+html body .preparation-card::before{content:"PACKING NOTE";font:700 12px/1.4 inherit;font-family:inherit;color:var(--ai-gold);letter-spacing:.18em;border-bottom:0;padding-bottom:0;margin-bottom:8px}
+html body .polaroid,html body .polaroid.moment-port{margin-top:0;align-self:stretch}
+html body .preparation-card::before{font-size:12px;font-weight:700;line-height:1.4}
+html body .community-compact-heading h1{color:var(--ai-ink)!important;font-weight:600!important}
