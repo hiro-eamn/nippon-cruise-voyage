@@ -281,3 +281,6 @@ html body .stamp-sheet{display:flex;flex-wrap:wrap;justify-content:center;gap:16
 html body .stamp-sheet .stamp-slot,html body .stamp-sheet .stamp-slot:nth-child(n){flex:0 0 25%;width:25%;min-width:0;margin:0}
 html body .slot-seal{width:100%;max-width:66px;height:auto;aspect-ratio:1}
 @media(max-width:370px){html body .japan-map button.port span{padding:0 10px;font-size:15px}html body .japan-map button.port-r span{left:11px}html body .japan-map button.port-l span{right:11px}html body .map-legend{padding:7px 9px}}
+
+/* Top info strips (preview state / sample reservation note) hidden at the owner's request */
+html body .preview-banner,html body .sample-reservation-note{display:none!important}
