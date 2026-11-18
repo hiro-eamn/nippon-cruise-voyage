@@ -127,3 +127,136 @@ html body nav button,html body nav button.home{font-weight:700}
 @media(max-width:370px){html body .stamp-tabs .ui-icon{display:none}html body .stamp-tabs button{padding-inline:6px;gap:5px}}
 html body .repeat-offer{border-radius:22px;border:0;background:var(--ya-lemon)}
 html body .preparation-card::before{content:"旅じたく"}
+
+/* ================= Finishing rounds ================= */
+/* R1: home (before sailing) */
+html body main .tiny-kicker,html body main .eyebrow,html body dialog .tiny-kicker,html body dialog .eyebrow{display:inline-block!important;width:fit-content!important;max-width:100%}
+html body .community-compact-heading .tiny-kicker{display:block!important;width:auto!important}
+html body main h1,html body main h2,html body main h3,html body main p,html body main strong,html body main button,html body dialog h2,html body dialog p,html body .editorial-notice span{word-break:auto-phrase}
+html body .polaroid,html body .polaroid.moment-port{display:flex;flex-direction:column;padding:0 0 14px}
+html body .polaroid .moment-photo,html body .polaroid.moment-port .moment-photo{height:150px;margin:0 0 12px;border-radius:0;flex:none}
+html body .polaroid .hand-note{flex:1}
+html body .polaroid .card-destination{margin:12px 12px 0;padding:8px 12px 8px 14px;border:0;border-radius:999px;font-family:inherit;white-space:nowrap}
+html body .pass-status{display:inline-block;width:fit-content;padding:4px 12px;border-radius:999px;background:var(--ya-lemon);color:#77500f;font-size:13px!important;font-weight:700;letter-spacing:.04em}
+html body .editorial-notice .notice-pill{background:var(--ya-lemon);color:#77500f}
+/* R2: home (on board) */
+@media(max-width:760px){
+ html body header.is-onboard .headerActions .testbtn span,html body header.is-onboard .headerActions .bell-caption{display:block}
+ html body header.is-onboard .headerActions .testbtn,html body header.is-onboard .headerActions .notification-bell{min-width:50px}
+ html body header .headerActions .boarding-entry{background:none;box-shadow:none;color:var(--ya-green);min-width:54px;padding:4px 3px}
+ html body header .headerActions .boarding-entry svg{box-sizing:content-box;padding:0;border-radius:8px}
+ html body header.is-onboard .brand{max-width:104px}
+ html body header.is-onboard .headerActions{gap:0}
+}
+html body .onboard-course-title .tiny-kicker{color:#9a3a34}
+html body .map-home-card{display:flex;flex-direction:column;justify-content:flex-start;padding:10px 10px 16px}
+html body .map-home-card .map-home-art{flex:none;height:auto;aspect-ratio:4/3;margin:0;border:0;border-radius:18px;overflow:hidden}
+html body .map-home-copy{padding:14px 6px 0}
+html body .today-actions{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin:16px 0 26px}
+html body .today-actions .textbtn{flex:1 1 150px;min-height:50px;padding:8px 14px;background:#fff;border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;color:var(--ya-green-d);font-size:15px;font-weight:700;text-align:center}
+/* R3: home (after the voyage) */
+html body .polaroid .card-destination{font-size:14px!important;gap:6px;padding:8px 10px 8px 12px}
+html body .repeat-offer .tag,html body .repeat-offer>span:first-child{background:#fff;color:#77500f}
+/* R4: my voyage */
+html body .preparation-card .tiny-kicker,html body .port-existing>.eyebrow{display:none!important}
+html body .booking-cover>span{border:0;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ya-green-d);padding:4px 12px;font-size:12px;font-weight:700;letter-spacing:.08em}
+html body .ticket-strip span{font-size:13px;font-weight:700;color:#77500f;letter-spacing:.04em}
+html body main .services-card h2,html body main .services-card h3,html body main .card>h2,html body main .card>h3{font-weight:700!important}
+html body .service-row .ui-icon{color:var(--ya-green)}
+html body .booking-details .chip,html body .booking-details div.chip{background:var(--ya-mint);color:var(--ya-green-d)}
+html body .prep-progress progress{-webkit-appearance:none;appearance:none;height:10px;border:0;border-radius:999px;background:#f6e6dc;overflow:hidden}
+html body .prep-progress progress::-webkit-progress-bar{background:#f6e6dc;border-radius:999px}
+html body .prep-progress progress::-webkit-progress-value{background:var(--ya-coral);border-radius:999px}
+html body .prep-progress progress::-moz-progress-bar{background:var(--ya-coral);border-radius:999px}
+html body .prep-progress span{color:#77500f;font-weight:700}
+html body label.check{gap:14px;font-weight:700}
+html body label.check input[type=checkbox]{-webkit-appearance:none;appearance:none;flex:none;width:30px;height:30px;margin:0;border:2px solid #8fcfc3;border-radius:10px;background:#fff;cursor:pointer;transition:background .15s,border-color .15s}
+html body label.check input[type=checkbox]:checked{border-color:var(--ya-green);background:var(--ya-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+html body label.check:has(input:checked){color:var(--ai-sub)}
+/* R5: stamp book - friends / crew, dialogs */
+html body .encounter-hero,html body .encounter-hero.crew-hero{background:var(--ya-peach);border:0;border-radius:22px;padding:22px 18px;margin-bottom:28px}
+html body .encounter-hero.crew-hero{background:var(--ya-mint)}
+html body .encounter-hero .tiny-kicker,html body .encounter-hero .eyebrow{background:#fff}
+html body .encounter-hero h2{font-size:22px;line-height:1.5;margin:8px 0 8px}
+html body .encounter-hero p{font-size:15px;color:var(--ai-sub);line-height:1.8}
+html body .encounter-hero button:not(.primary){background:#fff}
+html body .encounter-heading h2{font-size:20px}
+html body .encounter-heading>span{font-size:14px;color:var(--ai-sub)}
+html body .encounter-empty{border:2px dashed #f3cfc4!important;border-radius:22px;background:#fffdfb;padding:28px 16px}
+html body .encounter-empty-illustration{color:var(--ya-coral);gap:14px}
+html body .encounter-empty-illustration .ui-icon{width:40px;height:40px;stroke-width:1.5}
+html body .encounter-empty h3{font-size:20px;font-weight:700;line-height:1.5}
+html body .encounter-empty p{font-size:15px;color:var(--ai-sub)}
+html body .encounter-empty button{background:#fff;font-size:15px;min-height:48px}
+html body .encounter-card{border-radius:22px;border:0;box-shadow:0 3px 0 #f3e3d8;background:#fff}
+html body .encounter-card-arrow{color:#b9a79b}
+html body .stamp-panel>p,html body .stamp-panel small,html body .encounter-demo,html body .encounter-note{font-size:14px!important;line-height:1.7;color:var(--ai-sub)}
+html body dialog input:not([type=checkbox]):not([type=radio]):not([type=file]),html body dialog textarea,html body dialog select,html body main input:not([type=checkbox]):not([type=radio]):not([type=file]),html body main textarea{border:2px solid #ead9cd;border-radius:16px;background:#fff;font-size:17px;min-height:54px;padding:10px 14px;box-sizing:border-box}
+html body dialog input:focus,html body dialog textarea:focus,html body dialog select:focus,html body main input:focus,html body main textarea:focus{outline:0;border-color:var(--ya-green);box-shadow:0 0 0 4px #cfeae4}
+html body dialog label{font-weight:700;color:var(--ai-ink)}
+html body #login-error:empty{display:none}
+/* R6-R7: community post cards, post detail, packing list */
+html body .gallery{gap:22px}
+html body .gallery .post,html body article.card.post{padding:0!important;border:0!important;border-radius:28px!important;background:#fff;box-shadow:var(--ai-shadow)!important;overflow:hidden;transform:none}
+html body .gallery .post>button:first-child{border-radius:0!important;box-shadow:none!important;border:0!important;background:none}
+html body .gallery .postphoto{display:block;width:100%;height:230px;object-fit:cover;border:0;border-radius:0}
+html body .gallery span.postphoto{display:grid;place-items:center;font-size:56px}
+html body .photocount{right:12px;bottom:12px;padding:4px 10px;border-radius:999px;background:rgba(59,54,68,.72);color:#fff;font-size:13px;font-weight:700}
+html body .gallery .postbody{padding:16px 18px 18px}
+html body .gallery .postmeta{gap:10px;color:var(--ai-ink)}
+html body .gallery .postmeta .post-author{font-size:16px;font-weight:700;gap:8px;min-width:0}
+html body .gallery .postmeta>span{flex:none;max-width:none;overflow:visible;padding:4px 12px;border-radius:999px;background:var(--ya-mint);color:var(--ya-green-d);font-size:14px;font-weight:700;white-space:nowrap}
+html body .gallery .timestamp,html body .timestamp{font-size:14px;color:var(--ai-sub);margin:8px 0 8px}
+html body .gallery .post-excerpt{display:-webkit-box;width:100%;padding:0;border:0!important;border-radius:0;background:none;box-shadow:none!important;text-align:left;font-size:17px;font-weight:500;line-height:1.75;color:var(--ai-ink);max-height:none;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px}
+html body .gallery .postactions{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding-top:14px;border-top:2px dotted #f0d9cc}
+html body .gallery .postactions button{min-height:48px;padding:6px 12px;font-size:15px;font-weight:700;background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0!important;border-radius:999px;box-shadow:0 3px 0 #cfeae4!important;white-space:nowrap}
+html body .gallery .postactions .like-button{min-width:72px;color:#9a3a34;border-color:#f3c4ba!important;box-shadow:0 3px 0 #fbe3dc!important}
+html body .gallery .postactions .like-button.is-liked{background:var(--ya-peach)}
+html body .gallery .postmanage{gap:8px;margin-top:10px}
+html body .gallery .postmanage button{min-height:44px;font-size:14px;border-radius:999px;background:#fff8f4;border:0;color:var(--ai-sub);box-shadow:none}
+html body dialog .timestamp{font-size:14px}
+html body dialog .draft-note,html body dialog p.muted{font-size:14px}
+html body .community-feed-heading h2{font-size:20px}
+/* R8: post detail, quick guide, generic dialog buttons */
+html body dialog button:not([class]):not(.primary){min-height:48px;padding:8px 18px;background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;font-weight:700}
+html body .draft-status{font-size:14px;background:var(--ya-mint);color:var(--ya-green-d);border-radius:14px}
+html body dialog h3{color:var(--ai-ink);font-weight:700}
+html body .guide-features li{font-size:15px;line-height:1.6;color:var(--ai-ink)}
+html body .guide-features li>span{color:var(--ya-coral)}
+html body .guide-skip,html body dialog button.guide-skip{font-size:15px;min-height:44px;color:var(--ai-sub);text-decoration:underline;text-underline-offset:4px;border:0;background:none;box-shadow:none}
+html body .guide-last-note{font-size:14px;color:var(--ai-sub)}
+html body .guide-step-dots span{width:9px;height:9px;background:#f3d9cd}
+html body .guide-step-dots span.is-current{width:28px;background:var(--ya-coral)}
+html body .guide-stage{font-size:13px;background:var(--ya-lemon);color:#77500f;font-weight:700}
+html body .guide-controls button:not(.primary){background:#fff;border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;color:var(--ya-green-d);font-weight:700}
+/* R9: port map page, boarding code */
+html body .port-map-tools{border-radius:22px;border:0;box-shadow:0 3px 0 #f3e3d8;background:#fff}
+html body .port-map-tools>.primary{background:var(--ya-green);color:#fff;border:0;border-radius:999px;box-shadow:0 4px 0 var(--ya-green-d);font-size:15px;min-height:50px;justify-content:center}
+html body .port-map-tools .port-country-button,html body .port-map-tools>button:not(.primary){background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;font-size:14px;font-weight:700;min-height:48px}
+html body .port-map-tools .port-picker select{background:#fff;border:2px solid #ead9cd;border-radius:16px;min-height:48px;font-size:17px}
+html body .port-map-filters button{background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0;border-radius:999px;box-shadow:none;font-size:14px!important;font-weight:700;min-height:46px;padding:8px 14px}
+html body .port-map-filters button[aria-pressed=true]{background:var(--ya-green);border-color:var(--ya-green);color:#fff}
+html body .port-map-frame{border:0;border-radius:24px;box-shadow:var(--ai-shadow)}
+html body .port-spot-card{border:0;border-radius:28px;background:#fff;box-shadow:var(--ai-shadow)}
+html body .port-spot-card.is-selected{outline:3px solid var(--ya-green);outline-offset:3px}
+html body .port-spot-card-body>strong{font-weight:700}
+html body .port-card-link{background:var(--ya-mint);color:var(--ya-green-d);border-radius:999px;padding:10px 16px;font-size:14px!important;font-weight:700}
+html body .port-stop-card{border:0;border-radius:22px;background:#fff;box-shadow:0 3px 0 #f3e3d8}
+html body .port-stop-card small{font-size:14px;color:var(--ai-sub)}
+html body .port-spot-tip,html body .port-transport-note{background:var(--ya-lemon);color:#6f4b0e;border-radius:16px;font-size:14px!important}
+html body .port-guide-heading>.textbtn{font-size:15px}
+html body .port-map-legend{font-size:14px}
+html body main .port-map-tools>button.primary,html body .port-guide .port-map-tools>.primary{background:var(--ya-green)!important;background-image:none!important;color:#fff!important;border:0!important;box-shadow:0 4px 0 var(--ya-green-d)!important}
+/* R10: narrow phones and desktop */
+@media(max-width:370px){
+ html body .polaroid .card-destination{white-space:normal;line-height:1.35}
+ html body .gallery .postactions{grid-template-columns:1fr 1fr 1fr;gap:6px}
+ html body .gallery .postactions button{padding:6px 4px;font-size:14px;min-width:0}
+ html body .gallery .postactions .like-button{min-width:0}
+ html body .community-tabs button{white-space:nowrap;font-size:14px;padding-inline:4px}
+ html body header .headerActions .bell-caption,html body header .headerActions .testbtn span{display:block}
+ html body header .brand{max-width:112px}
+}
+html body .port-map-filters{flex-wrap:wrap!important;overflow:visible!important}
+@media(min-width:761px){html body .polaroid small{display:block;padding:0 14px}}
+@media(max-width:370px){html body .stamp-panel .topline .primary,html body .topline>.primary{font-size:15px;padding-inline:10px}}
