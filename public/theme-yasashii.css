@@ -1,0 +1,128 @@
+/* "Yasashii" theme: a gentle, cute redesign loaded after theme-ai.css.
+   Rounded type, milk-white page with pastel blobs, sea-green as the main colour, coral as the accent,
+   soft pudgy buttons. Sizes and contrast stay senior-friendly (text 14px+, targets 44px+, 4.5:1). */
+:root{
+ --ya-font:"Hiragino Maru Gothic ProN","Zen Maru Gothic","Kosugi Maru","BIZ UDPGothic","Yu Gothic UI","Yu Gothic",sans-serif;
+ --ya-green:#23797e;--ya-green-d:#17595d;--ya-coral:#e8695c;--ya-coral-d:#cf4a43;--ya-peach:#ffe3dc;--ya-mint:#dff3ee;--ya-lemon:#fff0c7;--ya-sky:#dcecfb;
+ --ai-bg:#fff7f1;--ai-card:#fff;--ai-ink:#3b3644;--ai-sub:#655f70;--ai-navy:#23797e;--ai-navy-2:#1c686c;--ai-red:#cf4a43;--ai-gold:#8f6119;--ai-line:#f0e4da;--ai-soft:#e6f5f1;--ai-sand:#fff0c7;
+ --ai-radius:28px;--ai-shadow:0 2px 0 rgba(150,105,85,.05),0 12px 28px rgba(170,120,95,.13);
+ --ink:#3b3644;--teal:#23797e;--pale:#e6f5f1;--sand:#fff7f1;--line:#f0e4da;--muted:#655f70;--gold:#8f6119;--coral:#cf4a43;--navy:#23797e;--red:#cf4a43;--paper:#fff;
+ --ui-ink:#3b3644;--ui-sub:#655f70;--ui-teal:#23797e;--ui-teal-dark:#17595d;--ui-red:#cf4a43;--ui-paper:#fff;--ui-line:#f0e4da;--ui-radius:28px;--ui-shadow:0 2px 0 rgba(150,105,85,.05),0 12px 28px rgba(170,120,95,.13)
+}
+
+/* ---------- Page, type ---------- */
+html body{font-family:var(--ya-font);color:var(--ai-ink);background:#fff7f1;background-image:radial-gradient(520px 380px at -8% -4%,#ffe1d6 0,transparent 70%),radial-gradient(460px 360px at 108% 12%,#d9f1ea 0,transparent 70%),radial-gradient(520px 420px at 50% 100%,#fff0c7 0,transparent 72%);background-repeat:no-repeat;background-attachment:fixed}
+html body button,html body input,html body select,html body textarea{font-family:var(--ya-font)}
+html body main h1,html body main h2,html body dialog h2,html body .page-intro h1,html body .editorial-welcome h1,html body .community-compact-heading h1,html body main .card h2,html body main section h2,html body main .services-card h2,html body .ocean-story h2{font-family:var(--ya-font)!important;font-weight:700!important;letter-spacing:.03em;color:var(--ai-ink)}
+html body .ship-event strong,html body .voyage-counter strong,html body .stamp-summary-main strong{font-family:var(--ya-font)!important;font-weight:700}
+html body .booking-cover b{font-family:var(--ya-font);font-weight:700}
+/* Small labels become soft pills */
+html body .tiny-kicker,html body .eyebrow{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-peach);color:#9a3a34;font-size:12px;font-weight:700;letter-spacing:.08em;line-height:1.5}
+html body .community-compact-heading .tiny-kicker{display:block;padding:0;background:none;border-radius:0}
+html body .preparation-card::before{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-lemon);color:#77500f;letter-spacing:.08em}
+/* A little wave under each page title */
+html body .page-intro h1::after,html body .community-compact-heading h1::after{content:"";display:block;width:72px;height:10px;margin-top:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 5q6-6 12 0t12 0' fill='none' stroke='%23e8695c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 50%/24px 10px}
+
+/* ---------- Header ---------- */
+html body header,html body header.is-onboard{background:rgba(255,247,241,.9);border-bottom-color:transparent}
+html body header .headerActions .testbtn,html body header .headerActions .notification-bell,html body header .headerActions .profilebtn{color:var(--ya-green)}
+html body header .headerActions .boarding-entry{background:var(--ya-green);border-radius:18px;box-shadow:0 3px 0 var(--ya-green-d)}
+html body .notification-badge{background:var(--ya-coral-d)!important}
+@media(min-width:761px){html body header .testbtn{border-color:#bfe3dc}html body header .notification-bell{background:var(--ya-mint)}}
+
+/* ---------- Buttons: round and a little pudgy ---------- */
+html body .primary,html body a.account-link.primary,html body button.primary.wide,html body .voyage-pass>.primary{background:var(--ya-green);color:#fff;border-radius:999px;box-shadow:0 4px 0 var(--ya-green-d);font-weight:700;letter-spacing:.03em;transition:transform .12s,box-shadow .12s}
+html body .primary:hover,html body a.account-link.primary:hover{background:#1f7074;box-shadow:0 4px 0 var(--ya-green-d)}
+html body .primary:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ya-green-d)}
+html body .preview-banner button,html body .community-service button,html body .empty button:not(.primary),html body .account-compact .account-link:not(.primary),html body .modal-close-bottom,html body .notification-heading button,html body main button:not([class]),html body .ship-location button,html body main button.stamp-try,html body button[onclick^="selectShipMapDeck"]{background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0!important;border-radius:999px;box-shadow:0 3px 0 #cfeae4!important;font-weight:700}
+html body button[onclick^="selectShipMapDeck"].selected{background:var(--ya-green);border-color:var(--ya-green)!important;color:#fff;box-shadow:0 3px 0 var(--ya-green-d)!important}
+html body .statuslist button{background:#fff;color:var(--ai-ink);border:2px solid #f0dfd3;border-radius:18px}
+html body .statuslist button.selected{background:var(--ya-mint);border-color:#8fcfc3;color:var(--ya-green-d)}
+html body .textbtn{color:var(--ya-green-d)}
+html body .help-topics button{background:#fff;border:0;border-radius:20px;box-shadow:0 3px 0 #f3e3d8!important;color:var(--ai-ink)}
+
+/* ---------- Cards ---------- */
+html body section.card,html body .card,html body .voyage-pass,html body .stamp-panel,html body .ship-notice-board,html body .map-home-card,html body .ship-event,html body .polaroid,html body .journey-journal,html body .ship-location,html body .voyage-counter.is-countdown,html body .ship-place-detail,html body .empty{border-radius:28px;border-color:transparent;box-shadow:var(--ai-shadow)}
+html body .support-options>.card,html body .support-options>.card:nth-child(n){box-shadow:var(--ai-shadow)!important}
+html body .journey-link,html body .editorial-notice,html body .community-service,html body .account-compact{border-radius:22px;border:0;box-shadow:0 3px 0 #f3e3d8!important;background:#fff}
+html body .empty,html body .empty.community-empty{border:2px dashed #f3cfc4!important;box-shadow:none;background:#fffdfb}
+html body .stamp-panel .empty{border:0!important}
+html body dialog{border-radius:28px;border:0}
+html body dialog .close{background:var(--ya-peach);color:#9a3a34}
+html body dialog .close:hover{background:#ffd3c8}
+html body #toast{background:var(--ya-green-d);border-radius:999px}
+html body p.demo{border-top:2px dotted #f0d9cc}
+/* Chips */
+html body .tag,html body .chip,html body div.chip,html body .sample-clock,html body .port-map-sample,html body .notice-pill,html body .booking-details .tag{background:var(--ya-lemon);color:#6f4b0e}
+html body .event-live{background:var(--ya-coral-d)}
+
+/* ---------- Home ---------- */
+html body .voyage-counter.is-countdown strong{color:var(--ya-coral-d)}
+html body .journey-link .journey-icon{background:var(--ya-mint);color:var(--ya-green-d);border-radius:50%}
+html body .journey-link:nth-child(2) .journey-icon{background:var(--ya-peach);color:#9a3a34}
+html body .journey-link:nth-child(3) .journey-icon{background:var(--ya-lemon);color:#77500f}
+html body .journey-link:nth-child(4) .journey-icon{background:var(--ya-sky);color:#2b5c8a}
+html body .journey-arrow{color:#b9a79b}
+html body .polaroid .card-destination{background:var(--ya-mint);color:var(--ya-green-d)}
+html body .pass-status{color:#9a3a34}
+html body .ship-event.event-music{background:var(--ya-green);border-color:transparent}
+html body .ship-notice.is-important .notice-label{color:var(--ya-coral-d)}
+html body .ocean-label{color:#9a3a34}
+@media(max-width:760px){
+ /* Phone hero: the photo melts into a white card; text is dark and calm */
+ html body .ocean-story{background-color:#fff;border-radius:32px}
+ html body .ocean-story::before{background:#fff;-webkit-mask-image:linear-gradient(180deg,transparent 150px,#000 214px);mask-image:linear-gradient(180deg,transparent 150px,#000 214px)}
+ html body .ocean-overlay{padding-top:214px}
+ html body .ocean-overlay h2,html body .ocean-story h2{color:var(--ai-ink)}
+ html body .ocean-overlay p{color:var(--ai-sub)}
+ html body .ocean-label{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-peach);font-size:11px;letter-spacing:.1em}
+}
+@media(min-width:761px){html body .ocean-story h2,html body .ocean-overlay h2{color:#fff}html body .ocean-label{color:#ffe9a8}}
+
+/* ---------- My voyage / community / support ---------- */
+html body .ticket-strip{background:var(--ya-lemon)}
+html body .prep-progress div,html body .progress,html body .stamp-summary-side .progress{background:#f6e6dc}
+html body .progress>div,html body .prep-progress div>div,html body .stamp-summary-side .progress>div{background:var(--ya-coral)}
+html body label.check input,html body dialog input[type=checkbox]{accent-color:var(--ya-green)}
+html body label.check{border-bottom:2px dotted #f0d9cc}
+html body .community-tabs{border-bottom-color:#f0dfd3}
+html body .community-tabs button.active,html body .community-tabs button.selected,html body .community-tabs button[aria-selected="true"]{color:var(--ya-green-d);border-bottom-color:var(--ya-coral)}
+html body .empty-symbol,html body .following-count,html body .support-symbol{background:var(--ya-mint);color:var(--ya-green-d);border-radius:50%}
+html body .support-options>.card:nth-child(2) .support-symbol{background:var(--ya-peach);color:#9a3a34}
+html body .faq p{background:var(--ya-mint)}
+html body details.faq{border-bottom:2px dotted #f0d9cc}
+html body main select,html body main details.community-more>summary{border:2px solid #f0dfd3;border-radius:16px}
+html body .notification-item,html body .notification-item.is-unread{border:0;border-radius:20px;background:#fff8f4}
+html body .notification-item.is-unread{background:var(--ya-mint)}
+
+/* ---------- Stamp book ---------- */
+html body .stamp-tabs{background:#f8e7dc}
+html body .stamp-tabs button.selected{color:var(--ya-green-d);box-shadow:0 2px 0 #ecd3c4}
+html body .stamp-tabs small{background:var(--ya-mint);color:var(--ya-green-d)}
+html body .stamp-summary-main strong{color:var(--ya-green)}
+html body .stamp-sheet{border-radius:22px;background:#fffaf0 repeating-linear-gradient(0deg,transparent 0 27px,#f6ebd6 27px 28px)}
+html body .slot-seal{border-color:#d8c8bd;color:#8a7d78}
+html body .japan-map .map-land{fill:#fffdf7;stroke:#a9cfc6;stroke-width:1.2}
+html body .port-existing .map.japan-map,html body div.map.japan-map{background:#d9eff5;border-radius:24px}
+html body .japan-map button.port span{border:2px solid #a9d9d0;box-shadow:0 3px 0 rgba(35,121,126,.18);color:var(--ya-green-d)}
+html body .japan-map button.port.visited span{background:var(--ya-green);border-color:var(--ya-green);color:#fff}
+html body .japan-map .map-compass path{fill:#a9cfd6}
+html body .ship-diagram{background:#d9eff5}
+html body button.ship-place{background:var(--ya-mint)!important}
+html body button.ship-place.is-selected{background:#bfe6dc!important;border-color:var(--ya-green)}
+
+/* ---------- Bottom tab bar ---------- */
+html body nav{background:rgba(255,255,255,.96);box-shadow:0 10px 28px rgba(170,120,95,.24),0 0 0 2px #fbe9df}
+html body nav button,html body nav button.home{color:#6f6777}
+html body nav button.active,html body nav button.home.active{color:var(--ya-green-d);font-weight:700}
+html body nav button.active:not(.home) .navicon{background:var(--ya-mint)}
+html body nav button.home .navicon,html body nav button.home.active .navicon{background:var(--ya-coral);box-shadow:0 5px 0 #c9483f,0 10px 18px rgba(232,105,92,.3)}
+html body nav button.home.active .navicon{box-shadow:0 5px 0 #c9483f,0 0 0 4px #ffd97a,0 10px 18px rgba(232,105,92,.3)}
+
+/* ---------- Opening notebook: sea-green cover ---------- */
+html body .journal-opening{background:#fff7f1}
+html body .journal-cover{background:radial-gradient(ellipse at 18% 10%,#6fc0b866,transparent 50%),linear-gradient(100deg,#1d6c70,#2f9197 16%,#23797e 55%,#1a6064)!important;border-color:#f3d48a}
+html body .tiny-kicker,html body .eyebrow{width:fit-content;max-width:100%;align-self:flex-start;justify-self:start}
+html body nav button,html body nav button.home{font-weight:700}
+@media(max-width:370px){html body .stamp-tabs .ui-icon{display:none}html body .stamp-tabs button{padding-inline:6px;gap:5px}}
+html body .repeat-offer{border-radius:22px;border:0;background:var(--ya-lemon)}
