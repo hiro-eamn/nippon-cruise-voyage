@@ -1,131 +1,128 @@
-/* "Yasashii" theme: a gentle, cute redesign loaded after theme-ai.css.
-   Rounded type, milk-white page with pastel blobs, sea-green as the main colour, coral as the accent,
-   soft pudgy buttons. Sizes and contrast stay senior-friendly (text 14px+, targets 44px+, 4.5:1). */
+/* "Yasashii" theme, grown-up edition (2026-11-19): loaded after theme-ai.css.
+   Ivory page, Mincho headings over rounded body type, deep sea-green, dusty coral and a thin gold line as accents,
+   flat soft buttons, hairline borders. Sizes and contrast stay senior-friendly (text 14px+, targets 44px+, 4.5:1). */
 :root{
+ --ya-serif:"Hiragino Mincho ProN","Zen Old Mincho","Yu Mincho","YuMincho","Noto Serif JP",serif;--ya-gold:#b8975a;--ya-gold-d:#80622a;--ya-hair:#e9e0d4;
  --ya-font:"Hiragino Maru Gothic ProN","Zen Maru Gothic","Kosugi Maru","BIZ UDPGothic","Yu Gothic UI","Yu Gothic",sans-serif;
- --ya-green:#23797e;--ya-green-d:#17595d;--ya-coral:#e8695c;--ya-coral-d:#cf4a43;--ya-peach:#ffe3dc;--ya-mint:#dff3ee;--ya-lemon:#fff0c7;--ya-sky:#dcecfb;
- --ai-bg:#fff7f1;--ai-card:#fff;--ai-ink:#3b3644;--ai-sub:#655f70;--ai-navy:#23797e;--ai-navy-2:#1c686c;--ai-red:#cf4a43;--ai-gold:#8f6119;--ai-line:#f0e4da;--ai-soft:#e6f5f1;--ai-sand:#fff0c7;
- --ai-radius:28px;--ai-shadow:0 2px 0 rgba(150,105,85,.05),0 12px 28px rgba(170,120,95,.13);
- --ink:#3b3644;--teal:#23797e;--pale:#e6f5f1;--sand:#fff7f1;--line:#f0e4da;--muted:#655f70;--gold:#8f6119;--coral:#cf4a43;--navy:#23797e;--red:#cf4a43;--paper:#fff;
- --ui-ink:#3b3644;--ui-sub:#655f70;--ui-teal:#23797e;--ui-teal-dark:#17595d;--ui-red:#cf4a43;--ui-paper:#fff;--ui-line:#f0e4da;--ui-radius:28px;--ui-shadow:0 2px 0 rgba(150,105,85,.05),0 12px 28px rgba(170,120,95,.13)
+ --ya-green:#1f6266;--ya-green-d:#164a4d;--ya-coral:#c66a5c;--ya-coral-d:#ad4d3d;--ya-peach:#f6e8e1;--ya-mint:#e4eeea;--ya-lemon:#f4ebd8;--ya-sky:#e3eaf1;
+ --ai-bg:#faf6f0;--ai-card:#fff;--ai-ink:#2f2d33;--ai-sub:#5f5a64;--ai-navy:#1f6266;--ai-navy-2:#1a5659;--ai-red:#ad4d3d;--ai-gold:#80622a;--ai-line:#e9e0d4;--ai-soft:#e4eeea;--ai-sand:#f4ebd8;
+ --ai-radius:20px;--ai-shadow:0 1px 2px rgba(70,55,40,.05),0 10px 30px rgba(70,55,40,.07);
+ --ink:#2f2d33;--teal:#1f6266;--pale:#e4eeea;--sand:#faf6f0;--line:#e9e0d4;--muted:#5f5a64;--gold:#80622a;--coral:#ad4d3d;--navy:#1f6266;--red:#ad4d3d;--paper:#fff;
+ --ui-ink:#2f2d33;--ui-sub:#5f5a64;--ui-teal:#1f6266;--ui-teal-dark:#164a4d;--ui-red:#ad4d3d;--ui-paper:#fff;--ui-line:#e9e0d4;--ui-radius:20px;--ui-shadow:0 1px 2px rgba(70,55,40,.05),0 10px 30px rgba(70,55,40,.07)
 }
 
 /* ---------- Page, type ---------- */
-html body{font-family:var(--ya-font);color:var(--ai-ink);background:#fff7f1;background-image:radial-gradient(520px 380px at -8% -4%,#ffe1d6 0,transparent 70%),radial-gradient(460px 360px at 108% 12%,#d9f1ea 0,transparent 70%),radial-gradient(520px 420px at 50% 100%,#fff0c7 0,transparent 72%);background-repeat:no-repeat;background-attachment:fixed}
+html body{font-family:var(--ya-font);color:var(--ai-ink);background:#faf6f0;background-image:linear-gradient(180deg,#f4eee4 0,#faf6f0 320px);background-repeat:no-repeat}
 html body button,html body input,html body select,html body textarea{font-family:var(--ya-font)}
-html body main h1,html body main h2,html body dialog h2,html body .page-intro h1,html body .editorial-welcome h1,html body .community-compact-heading h1,html body main .card h2,html body main section h2,html body main .services-card h2,html body .ocean-story h2{font-family:var(--ya-font)!important;font-weight:700!important;letter-spacing:.03em;color:var(--ai-ink)}
-html body .ship-event strong,html body .voyage-counter strong,html body .stamp-summary-main strong{font-family:var(--ya-font)!important;font-weight:700}
-html body .booking-cover b{font-family:var(--ya-font);font-weight:700}
+html body main h1,html body main h2,html body dialog h2,html body .page-intro h1,html body .editorial-welcome h1,html body .community-compact-heading h1,html body main .card h2,html body main section h2,html body main .services-card h2,html body .ocean-story h2{font-family:var(--ya-serif)!important;font-weight:700!important;letter-spacing:.06em;color:var(--ai-ink)}
+html body .ship-event strong,html body .voyage-counter strong,html body .stamp-summary-main strong{font-family:var(--ya-serif)!important;font-weight:700}
+html body .booking-cover b{font-family:var(--ya-serif);font-weight:700;letter-spacing:.08em}
 /* Small labels become soft pills */
-html body .tiny-kicker,html body .eyebrow{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-peach);color:#9a3a34;font-size:12px;font-weight:700;letter-spacing:.08em;line-height:1.5}
+html body .tiny-kicker,html body .eyebrow{display:inline-block;padding:0;border-radius:0;background:none;color:var(--ya-gold-d);font-size:13px;font-weight:700;letter-spacing:.18em;line-height:1.5}
 html body .community-compact-heading .tiny-kicker{display:block;padding:0;background:none;border-radius:0}
-html body .preparation-card::before{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-lemon);color:#77500f;letter-spacing:.08em}
+html body .preparation-card::before{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-lemon);color:#6f5420;letter-spacing:.08em}
 /* A little wave under each page title */
-html body .page-intro h1::after,html body .community-compact-heading h1::after{content:"";display:block;width:72px;height:10px;margin-top:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 5q6-6 12 0t12 0' fill='none' stroke='%23e8695c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 50%/24px 10px}
+html body .page-intro h1::after,html body .community-compact-heading h1::after{content:"";display:block;width:34px;height:2px;margin-top:14px;border-radius:2px;background:var(--ya-gold)}
 
 /* ---------- Header ---------- */
-html body header,html body header.is-onboard{background:rgba(255,247,241,.9);border-bottom-color:transparent}
+html body header,html body header.is-onboard{background:rgba(250,246,240,.94);border-bottom-color:transparent}
 html body header .headerActions .testbtn,html body header .headerActions .notification-bell,html body header .headerActions .profilebtn{color:var(--ya-green)}
-html body header .headerActions .boarding-entry{background:var(--ya-green);border-radius:18px;box-shadow:0 3px 0 var(--ya-green-d)}
+html body header .headerActions .boarding-entry{background:var(--ya-green);border-radius:18px;box-shadow:0 6px 16px rgba(22,74,77,.2)}
 html body .notification-badge{background:var(--ya-coral-d)!important}
-@media(min-width:761px){html body header .testbtn{border-color:#bfe3dc}html body header .notification-bell{background:var(--ya-mint)}}
+@media(min-width:761px){html body header .testbtn{border-color:#c3d4d0}html body header .notification-bell{background:var(--ya-mint)}}
 
 /* ---------- Buttons: round and a little pudgy ---------- */
-html body .primary,html body a.account-link.primary,html body button.primary.wide,html body .voyage-pass>.primary{background:var(--ya-green);color:#fff;border-radius:999px;box-shadow:0 4px 0 var(--ya-green-d);font-weight:700;letter-spacing:.03em;transition:transform .12s,box-shadow .12s}
-html body .primary:hover,html body a.account-link.primary:hover{background:#1f7074;box-shadow:0 4px 0 var(--ya-green-d)}
-html body .primary:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ya-green-d)}
-html body .preview-banner button,html body .community-service button,html body .empty button:not(.primary),html body .account-compact .account-link:not(.primary),html body .modal-close-bottom,html body .notification-heading button,html body main button:not([class]),html body .ship-location button,html body main button.stamp-try,html body button[onclick^="selectShipMapDeck"]{background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0!important;border-radius:999px;box-shadow:0 3px 0 #cfeae4!important;font-weight:700}
-html body button[onclick^="selectShipMapDeck"].selected{background:var(--ya-green);border-color:var(--ya-green)!important;color:#fff;box-shadow:0 3px 0 var(--ya-green-d)!important}
-html body .statuslist button{background:#fff;color:var(--ai-ink);border:2px solid #f0dfd3;border-radius:18px}
-html body .statuslist button.selected{background:var(--ya-mint);border-color:#8fcfc3;color:var(--ya-green-d)}
+html body .primary,html body a.account-link.primary,html body button.primary.wide,html body .voyage-pass>.primary{background:var(--ya-green);color:#fff;border-radius:999px;box-shadow:0 6px 16px rgba(22,74,77,.2);font-weight:700;letter-spacing:.03em;transition:transform .12s,box-shadow .12s}
+html body .primary:hover,html body a.account-link.primary:hover{background:#1a5659;box-shadow:0 6px 16px rgba(22,74,77,.2)}
+html body .primary:active{transform:scale(.98);box-shadow:0 2px 6px rgba(22,74,77,.2)}
+html body .preview-banner button,html body .community-service button,html body .empty button:not(.primary),html body .account-compact .account-link:not(.primary),html body .modal-close-bottom,html body .notification-heading button,html body main button:not([class]),html body .ship-location button,html body main button.stamp-try,html body button[onclick^="selectShipMapDeck"]{background:#fff;color:var(--ya-green-d);border:1.5px solid #c3d4d0!important;border-radius:999px;box-shadow:0 1px 2px rgba(70,55,40,.06)!important;font-weight:700}
+html body button[onclick^="selectShipMapDeck"].selected{background:var(--ya-green);border-color:var(--ya-green)!important;color:#fff;box-shadow:0 6px 16px rgba(22,74,77,.2)!important}
+html body .statuslist button{background:#fff;color:var(--ai-ink);border:1.5px solid #e2d8cc;border-radius:18px}
+html body .statuslist button.selected{background:var(--ya-mint);border-color:#9dbdb7;color:var(--ya-green-d)}
 html body .textbtn{color:var(--ya-green-d)}
-html body .help-topics button{background:#fff;border:0;border-radius:20px;box-shadow:0 3px 0 #f3e3d8!important;color:var(--ai-ink)}
+html body .help-topics button{background:#fff;border:0;border-radius:20px;box-shadow:0 1px 2px rgba(70,55,40,.05),0 6px 20px rgba(70,55,40,.06)!important;color:var(--ai-ink)}
 
 /* ---------- Cards ---------- */
-html body section.card,html body .card,html body .voyage-pass,html body .stamp-panel,html body .ship-notice-board,html body .map-home-card,html body .ship-event,html body .polaroid,html body .journey-journal,html body .ship-location,html body .voyage-counter.is-countdown,html body .ship-place-detail,html body .empty{border-radius:28px;border-color:transparent;box-shadow:var(--ai-shadow)}
+html body section.card,html body .card,html body .voyage-pass,html body .stamp-panel,html body .ship-notice-board,html body .map-home-card,html body .ship-event,html body .polaroid,html body .journey-journal,html body .ship-location,html body .voyage-counter.is-countdown,html body .ship-place-detail,html body .empty{border-radius:20px;border-color:transparent;box-shadow:var(--ai-shadow)}
 html body .support-options>.card,html body .support-options>.card:nth-child(n){box-shadow:var(--ai-shadow)!important}
-html body .journey-link,html body .editorial-notice,html body .community-service,html body .account-compact{border-radius:22px;border:0;box-shadow:0 3px 0 #f3e3d8!important;background:#fff}
-html body .empty,html body .empty.community-empty{border:2px dashed #f3cfc4!important;box-shadow:none;background:#fffdfb}
+html body .journey-link,html body .editorial-notice,html body .community-service,html body .account-compact{border-radius:18px;border:0;box-shadow:0 1px 2px rgba(70,55,40,.05),0 6px 20px rgba(70,55,40,.06)!important;background:#fff}
+html body .empty,html body .empty.community-empty{border:1.5px dashed #d9cdbf!important;box-shadow:none;background:#fdfbf7}
 html body .stamp-panel .empty{border:0!important}
-html body dialog{border-radius:28px;border:0}
-html body dialog .close{background:var(--ya-peach);color:#9a3a34}
-html body dialog .close:hover{background:#ffd3c8}
+html body dialog{border-radius:20px;border:0}
+html body dialog .close{background:var(--ya-peach);color:#8a4034}
+html body dialog .close:hover{background:#eed9d0}
 html body #toast{background:var(--ya-green-d);border-radius:999px}
-html body p.demo{border-top:2px dotted #f0d9cc}
+html body p.demo{border-top:1px solid #ebe2d6}
 /* Chips */
-html body .tag,html body .chip,html body div.chip,html body .sample-clock,html body .port-map-sample,html body .notice-pill,html body .booking-details .tag{background:var(--ya-lemon);color:#6f4b0e}
+html body .tag,html body .chip,html body div.chip,html body .sample-clock,html body .port-map-sample,html body .notice-pill,html body .booking-details .tag{background:var(--ya-lemon);color:#6f5420}
 html body .event-live{background:var(--ya-coral-d)}
 
 /* ---------- Home ---------- */
 html body .voyage-counter.is-countdown strong{color:var(--ya-coral-d)}
 html body .journey-link .journey-icon{background:var(--ya-mint);color:var(--ya-green-d);border-radius:50%}
-html body .journey-link:nth-child(2) .journey-icon{background:var(--ya-peach);color:#9a3a34}
-html body .journey-link:nth-child(3) .journey-icon{background:var(--ya-lemon);color:#77500f}
-html body .journey-link:nth-child(4) .journey-icon{background:var(--ya-sky);color:#2b5c8a}
-html body .journey-arrow{color:#b9a79b}
+html body .journey-arrow{color:#a89c8e}
 html body .polaroid .card-destination{background:var(--ya-mint);color:var(--ya-green-d)}
-html body .pass-status{color:#9a3a34}
+html body .pass-status{color:#8a4034}
 html body .ship-event.event-music{background:var(--ya-green);border-color:transparent}
 html body .ship-notice.is-important .notice-label{color:var(--ya-coral-d)}
-html body .ocean-label{color:#9a3a34}
+html body .ocean-label{color:#8a4034}
 @media(max-width:760px){
  /* Phone hero: the photo melts into a white card; text is dark and calm */
- html body .ocean-story{background-color:#fff;border-radius:32px}
+ html body .ocean-story{background-color:#fff;border-radius:20px}
  html body .ocean-story::before{background:#fff;-webkit-mask-image:linear-gradient(180deg,transparent 150px,#000 214px);mask-image:linear-gradient(180deg,transparent 150px,#000 214px)}
  html body .ocean-overlay{padding-top:214px}
  html body .ocean-overlay h2,html body .ocean-story h2{color:var(--ai-ink)}
  html body .ocean-overlay p{color:var(--ai-sub)}
- html body .ocean-label{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--ya-peach);font-size:11px;letter-spacing:.1em}
+ html body .ocean-label{display:inline-block;font-size:12px;letter-spacing:.18em}
 }
 @media(min-width:761px){html body .ocean-story h2,html body .ocean-overlay h2{color:#fff}html body .ocean-label{color:#ffe9a8}}
 
 /* ---------- My voyage / community / support ---------- */
 html body .ticket-strip{background:var(--ya-lemon)}
-html body .prep-progress div,html body .progress,html body .stamp-summary-side .progress{background:#f6e6dc}
-html body .progress>div,html body .prep-progress div>div,html body .stamp-summary-side .progress>div{background:var(--ya-coral)}
+html body .prep-progress div,html body .progress,html body .stamp-summary-side .progress{background:#ece4d8}
+html body .progress>div,html body .prep-progress div>div,html body .stamp-summary-side .progress>div{background:var(--ya-green)}
 html body label.check input,html body dialog input[type=checkbox]{accent-color:var(--ya-green)}
-html body label.check{border-bottom:2px dotted #f0d9cc}
+html body label.check{border-bottom:1px solid #ebe2d6}
 html body .community-tabs{border-bottom-color:#f0dfd3}
 html body .community-tabs button.active,html body .community-tabs button.selected,html body .community-tabs button[aria-selected="true"]{color:var(--ya-green-d);border-bottom-color:var(--ya-coral)}
 html body .empty-symbol,html body .following-count,html body .support-symbol{background:var(--ya-mint);color:var(--ya-green-d);border-radius:50%}
-html body .support-options>.card:nth-child(2) .support-symbol{background:var(--ya-peach);color:#9a3a34}
 html body .faq p{background:var(--ya-mint)}
-html body details.faq{border-bottom:2px dotted #f0d9cc}
-html body main select,html body main details.community-more>summary{border:2px solid #f0dfd3;border-radius:16px}
-html body .notification-item,html body .notification-item.is-unread{border:0;border-radius:20px;background:#fff8f4}
+html body details.faq{border-bottom:1px solid #ebe2d6}
+html body main select,html body main details.community-more>summary{border:1.5px solid #e2d8cc;border-radius:16px}
+html body .notification-item,html body .notification-item.is-unread{border:0;border-radius:20px;background:#f7f2ea}
 html body .notification-item.is-unread{background:var(--ya-mint)}
 
 /* ---------- Stamp book ---------- */
-html body .stamp-tabs{background:#f8e7dc}
-html body .stamp-tabs button.selected{color:var(--ya-green-d);box-shadow:0 2px 0 #ecd3c4}
+html body .stamp-tabs{background:#efe8dd}
+html body .stamp-tabs button.selected{color:var(--ya-green-d);box-shadow:0 1px 3px rgba(70,55,40,.12)}
 html body .stamp-tabs small{background:var(--ya-mint);color:var(--ya-green-d)}
 html body .stamp-summary-main strong{color:var(--ya-green)}
-html body .stamp-sheet{border-radius:22px;background:#fffaf0 repeating-linear-gradient(0deg,transparent 0 27px,#f6ebd6 27px 28px)}
+html body .stamp-sheet{border-radius:18px;background:#fffaf0 repeating-linear-gradient(0deg,transparent 0 27px,#f6ebd6 27px 28px)}
 html body .slot-seal{border-color:#d8c8bd;color:#8a7d78}
-html body .japan-map .map-land{fill:#fffdf7;stroke:#a9cfc6;stroke-width:1.2}
-html body .port-existing .map.japan-map,html body div.map.japan-map{background:#d9eff5;border-radius:24px}
-html body .japan-map button.port span{border:2px solid #a9d9d0;box-shadow:0 3px 0 rgba(35,121,126,.18);color:var(--ya-green-d)}
+html body .japan-map .map-land{fill:#fffdf7;stroke:#9fbdb6;stroke-width:1.2}
+html body .port-existing .map.japan-map,html body div.map.japan-map{background:#dfeaec;border-radius:20px}
+html body .japan-map button.port span{border:1.5px solid #c3d4d0;box-shadow:0 2px 6px rgba(22,74,77,.16);color:var(--ya-green-d)}
 html body .japan-map button.port.visited span{background:var(--ya-green);border-color:var(--ya-green);color:#fff}
-html body .japan-map .map-compass path{fill:#a9cfd6}
-html body .ship-diagram{background:#d9eff5}
+html body .japan-map .map-compass path{fill:#a8c0c4}
+html body .ship-diagram{background:#dfeaec}
 html body button.ship-place{background:var(--ya-mint)!important}
-html body button.ship-place.is-selected{background:#bfe6dc!important;border-color:var(--ya-green)}
+html body button.ship-place.is-selected{background:#cfe0db!important;border-color:var(--ya-green)}
 
 /* ---------- Bottom tab bar ---------- */
-html body nav{background:rgba(255,255,255,.96);box-shadow:0 10px 28px rgba(170,120,95,.24),0 0 0 2px #fbe9df}
+html body nav{background:rgba(255,255,255,.96);box-shadow:0 12px 30px rgba(60,45,30,.14),0 0 0 1px var(--ya-hair)}
 html body nav button,html body nav button.home{color:#6f6777}
 html body nav button.active,html body nav button.home.active{color:var(--ya-green-d);font-weight:700}
 html body nav button.active:not(.home) .navicon{background:var(--ya-mint)}
-html body nav button.home .navicon,html body nav button.home.active .navicon{background:var(--ya-coral);box-shadow:0 5px 0 #c9483f,0 10px 18px rgba(232,105,92,.3)}
-html body nav button.home.active .navicon{box-shadow:0 5px 0 #c9483f,0 0 0 4px #ffd97a,0 10px 18px rgba(232,105,92,.3)}
+html body nav button.home .navicon,html body nav button.home.active .navicon{background:var(--ya-green);box-shadow:0 8px 18px rgba(22,74,77,.28)}
+html body nav button.home.active .navicon{box-shadow:0 0 0 2px var(--ya-gold),0 8px 18px rgba(22,74,77,.28)}
 
 /* ---------- Opening notebook: sea-green cover ---------- */
-html body .journal-opening{background:#fff7f1}
-html body .journal-cover{background:radial-gradient(ellipse at 18% 10%,#6fc0b866,transparent 50%),linear-gradient(100deg,#1d6c70,#2f9197 16%,#23797e 55%,#1a6064)!important;border-color:#f3d48a}
+html body .journal-opening{background:#faf6f0}
+html body .journal-cover{background:radial-gradient(ellipse at 18% 10%,#6fc0b866,transparent 50%),linear-gradient(100deg,#1d6c70,#2f9197 16%,#1f6266 55%,#1a6064)!important;border-color:#f3d48a}
 html body .tiny-kicker,html body .eyebrow{width:fit-content;max-width:100%;align-self:flex-start;justify-self:start}
-html body nav button,html body nav button.home{font-weight:700}
+html body nav button,html body nav button.home{font-weight:500}
 @media(max-width:370px){html body .stamp-tabs .ui-icon{display:none}html body .stamp-tabs button{padding-inline:6px;gap:5px}}
-html body .repeat-offer{border-radius:22px;border:0;background:var(--ya-lemon)}
+html body .repeat-offer{border-radius:18px;border:0;background:var(--ya-lemon)}
 html body .preparation-card::before{content:"旅じたく"}
 
 /* ================= Finishing rounds ================= */
@@ -137,8 +134,8 @@ html body .polaroid,html body .polaroid.moment-port{display:flex;flex-direction:
 html body .polaroid .moment-photo,html body .polaroid.moment-port .moment-photo{height:150px;margin:0 0 12px;border-radius:0;flex:none}
 html body .polaroid .hand-note{flex:1}
 html body .polaroid .card-destination{margin:12px 12px 0;padding:8px 12px 8px 14px;border:0;border-radius:999px;font-family:inherit;white-space:nowrap}
-html body .pass-status{display:inline-block;width:fit-content;padding:4px 12px;border-radius:999px;background:var(--ya-lemon);color:#77500f;font-size:13px!important;font-weight:700;letter-spacing:.04em}
-html body .editorial-notice .notice-pill{background:var(--ya-lemon);color:#77500f}
+html body .pass-status{display:inline-block;width:fit-content;padding:4px 12px;border-radius:999px;background:var(--ya-lemon);color:#6f5420;font-size:13px!important;font-weight:700;letter-spacing:.04em}
+html body .editorial-notice .notice-pill{background:var(--ya-lemon);color:#6f5420}
 /* R2: home (on board) */
 @media(max-width:760px){
  html body header.is-onboard .headerActions .testbtn span,html body header.is-onboard .headerActions .bell-caption{display:block}
@@ -148,56 +145,56 @@ html body .editorial-notice .notice-pill{background:var(--ya-lemon);color:#77500
  html body header.is-onboard .brand{max-width:104px}
  html body header.is-onboard .headerActions{gap:0}
 }
-html body .onboard-course-title .tiny-kicker{color:#9a3a34}
+html body .onboard-course-title .tiny-kicker{color:#8a4034}
 html body .map-home-card{display:flex;flex-direction:column;justify-content:flex-start;padding:10px 10px 16px}
 html body .map-home-card .map-home-art{flex:none;height:auto;aspect-ratio:4/3;margin:0;border:0;border-radius:18px;overflow:hidden}
 html body .map-home-copy{padding:14px 6px 0}
 html body .today-actions{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin:16px 0 26px}
-html body .today-actions .textbtn{flex:1 1 150px;min-height:50px;padding:8px 14px;background:#fff;border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;color:var(--ya-green-d);font-size:15px;font-weight:700;text-align:center}
+html body .today-actions .textbtn{flex:1 1 150px;min-height:50px;padding:8px 14px;background:#fff;border:1.5px solid #c3d4d0;border-radius:999px;box-shadow:0 1px 2px rgba(70,55,40,.06);color:var(--ya-green-d);font-size:15px;font-weight:700;text-align:center}
 /* R3: home (after the voyage) */
 html body .polaroid .card-destination{font-size:14px!important;gap:6px;padding:8px 10px 8px 12px}
-html body .repeat-offer .tag,html body .repeat-offer>span:first-child{background:#fff;color:#77500f}
+html body .repeat-offer .tag,html body .repeat-offer>span:first-child{background:#fff;color:#6f5420}
 /* R4: my voyage */
 html body .preparation-card .tiny-kicker,html body .port-existing>.eyebrow{display:none!important}
 html body .booking-cover>span{border:0;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ya-green-d);padding:4px 12px;font-size:12px;font-weight:700;letter-spacing:.08em}
-html body .ticket-strip span{font-size:13px;font-weight:700;color:#77500f;letter-spacing:.04em}
+html body .ticket-strip span{font-size:13px;font-weight:700;color:#6f5420;letter-spacing:.04em}
 html body main .services-card h2,html body main .services-card h3,html body main .card>h2,html body main .card>h3{font-weight:700!important}
 html body .service-row .ui-icon{color:var(--ya-green)}
 html body .booking-details .chip,html body .booking-details div.chip{background:var(--ya-mint);color:var(--ya-green-d)}
-html body .prep-progress progress{-webkit-appearance:none;appearance:none;height:10px;border:0;border-radius:999px;background:#f6e6dc;overflow:hidden}
-html body .prep-progress progress::-webkit-progress-bar{background:#f6e6dc;border-radius:999px}
-html body .prep-progress progress::-webkit-progress-value{background:var(--ya-coral);border-radius:999px}
-html body .prep-progress progress::-moz-progress-bar{background:var(--ya-coral);border-radius:999px}
-html body .prep-progress span{color:#77500f;font-weight:700}
+html body .prep-progress progress{-webkit-appearance:none;appearance:none;height:10px;border:0;border-radius:999px;background:#ece4d8;overflow:hidden}
+html body .prep-progress progress::-webkit-progress-bar{background:#ece4d8;border-radius:999px}
+html body .prep-progress progress::-webkit-progress-value{background:var(--ya-green);border-radius:999px}
+html body .prep-progress progress::-moz-progress-bar{background:var(--ya-green);border-radius:999px}
+html body .prep-progress span{color:#6f5420;font-weight:700}
 html body label.check{gap:14px;font-weight:700}
-html body label.check input[type=checkbox]{-webkit-appearance:none;appearance:none;flex:none;width:30px;height:30px;margin:0;border:2px solid #8fcfc3;border-radius:10px;background:#fff;cursor:pointer;transition:background .15s,border-color .15s}
+html body label.check input[type=checkbox]{-webkit-appearance:none;appearance:none;flex:none;width:30px;height:30px;margin:0;border:1.5px solid #9dbdb7;border-radius:10px;background:#fff;cursor:pointer;transition:background .15s,border-color .15s}
 html body label.check input[type=checkbox]:checked{border-color:var(--ya-green);background:var(--ya-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
 html body label.check:has(input:checked){color:var(--ai-sub)}
 /* R5: stamp book - friends / crew, dialogs */
-html body .encounter-hero,html body .encounter-hero.crew-hero{background:var(--ya-peach);border:0;border-radius:22px;padding:22px 18px;margin-bottom:28px}
+html body .encounter-hero,html body .encounter-hero.crew-hero{background:var(--ya-peach);border:0;border-radius:18px;padding:22px 18px;margin-bottom:28px}
 html body .encounter-hero.crew-hero{background:var(--ya-mint)}
-html body .encounter-hero .tiny-kicker,html body .encounter-hero .eyebrow{background:#fff}
+html body .encounter-hero .tiny-kicker,html body .encounter-hero .eyebrow{background:none}
 html body .encounter-hero h2{font-size:22px;line-height:1.5;margin:8px 0 8px}
 html body .encounter-hero p{font-size:15px;color:var(--ai-sub);line-height:1.8}
 html body .encounter-hero button:not(.primary){background:#fff}
 html body .encounter-heading h2{font-size:20px}
 html body .encounter-heading>span{font-size:14px;color:var(--ai-sub)}
-html body .encounter-empty{border:2px dashed #f3cfc4!important;border-radius:22px;background:#fffdfb;padding:28px 16px}
+html body .encounter-empty{border:1.5px dashed #d9cdbf!important;border-radius:18px;background:#fdfbf7;padding:28px 16px}
 html body .encounter-empty-illustration{color:var(--ya-coral);gap:14px}
 html body .encounter-empty-illustration .ui-icon{width:40px;height:40px;stroke-width:1.5}
 html body .encounter-empty h3{font-size:20px;font-weight:700;line-height:1.5}
 html body .encounter-empty p{font-size:15px;color:var(--ai-sub)}
 html body .encounter-empty button{background:#fff;font-size:15px;min-height:48px}
-html body .encounter-card{border-radius:22px;border:0;box-shadow:0 3px 0 #f3e3d8;background:#fff}
-html body .encounter-card-arrow{color:#b9a79b}
+html body .encounter-card{border-radius:18px;border:0;box-shadow:0 1px 2px rgba(70,55,40,.05),0 6px 20px rgba(70,55,40,.06);background:#fff}
+html body .encounter-card-arrow{color:#a89c8e}
 html body .stamp-panel>p,html body .stamp-panel small,html body .encounter-demo,html body .encounter-note{font-size:14px!important;line-height:1.7;color:var(--ai-sub)}
-html body dialog input:not([type=checkbox]):not([type=radio]):not([type=file]),html body dialog textarea,html body dialog select,html body main input:not([type=checkbox]):not([type=radio]):not([type=file]),html body main textarea{border:2px solid #ead9cd;border-radius:16px;background:#fff;font-size:17px;min-height:54px;padding:10px 14px;box-sizing:border-box}
-html body dialog input:focus,html body dialog textarea:focus,html body dialog select:focus,html body main input:focus,html body main textarea:focus{outline:0;border-color:var(--ya-green);box-shadow:0 0 0 4px #cfeae4}
+html body dialog input:not([type=checkbox]):not([type=radio]):not([type=file]),html body dialog textarea,html body dialog select,html body main input:not([type=checkbox]):not([type=radio]):not([type=file]),html body main textarea{border:1.5px solid #d6cbbf;border-radius:16px;background:#fff;font-size:17px;min-height:54px;padding:10px 14px;box-sizing:border-box}
+html body dialog input:focus,html body dialog textarea:focus,html body dialog select:focus,html body main input:focus,html body main textarea:focus{outline:0;border-color:var(--ya-green);box-shadow:0 0 0 4px #d5e4e0}
 html body dialog label{font-weight:700;color:var(--ai-ink)}
 html body #login-error:empty{display:none}
 /* R6-R7: community post cards, post detail, packing list */
 html body .gallery{gap:22px}
-html body .gallery .post,html body article.card.post{padding:0!important;border:0!important;border-radius:28px!important;background:#fff;box-shadow:var(--ai-shadow)!important;overflow:hidden;transform:none}
+html body .gallery .post,html body article.card.post{padding:0!important;border:0!important;border-radius:20px!important;background:#fff;box-shadow:var(--ai-shadow)!important;overflow:hidden;transform:none}
 html body .gallery .post>button:first-child{border-radius:0!important;box-shadow:none!important;border:0!important;background:none}
 html body .gallery .postphoto{display:block;width:100%;height:230px;object-fit:cover;border:0;border-radius:0}
 html body .gallery span.postphoto{display:grid;place-items:center;font-size:56px}
@@ -208,45 +205,45 @@ html body .gallery .postmeta .post-author{font-size:16px;font-weight:700;gap:8px
 html body .gallery .postmeta>span{flex:none;max-width:none;overflow:visible;padding:4px 12px;border-radius:999px;background:var(--ya-mint);color:var(--ya-green-d);font-size:14px;font-weight:700;white-space:nowrap}
 html body .gallery .timestamp,html body .timestamp{font-size:14px;color:var(--ai-sub);margin:8px 0 8px}
 html body .gallery .post-excerpt{display:-webkit-box;width:100%;padding:0;border:0!important;border-radius:0;background:none;box-shadow:none!important;text-align:left;font-size:17px;font-weight:500;line-height:1.75;color:var(--ai-ink);max-height:none;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:14px}
-html body .gallery .postactions{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding-top:14px;border-top:2px dotted #f0d9cc}
-html body .gallery .postactions button{min-height:48px;padding:6px 12px;font-size:15px;font-weight:700;background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0!important;border-radius:999px;box-shadow:0 3px 0 #cfeae4!important;white-space:nowrap}
-html body .gallery .postactions .like-button{min-width:72px;color:#9a3a34;border-color:#f3c4ba!important;box-shadow:0 3px 0 #fbe3dc!important}
+html body .gallery .postactions{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding-top:14px;border-top:1px solid #ebe2d6}
+html body .gallery .postactions button{min-height:48px;padding:6px 12px;font-size:15px;font-weight:700;background:#fff;color:var(--ya-green-d);border:1.5px solid #c3d4d0!important;border-radius:999px;box-shadow:0 1px 2px rgba(70,55,40,.06)!important;white-space:nowrap}
+html body .gallery .postactions .like-button{min-width:72px;color:#8a4034;border-color:#e2c3ba!important;box-shadow:0 1px 2px rgba(70,55,40,.06)!important}
 html body .gallery .postactions .like-button.is-liked{background:var(--ya-peach)}
 html body .gallery .postmanage{gap:8px;margin-top:10px}
-html body .gallery .postmanage button{min-height:44px;font-size:14px;border-radius:999px;background:#fff8f4;border:0;color:var(--ai-sub);box-shadow:none}
+html body .gallery .postmanage button{min-height:44px;font-size:14px;border-radius:999px;background:#f7f2ea;border:0;color:var(--ai-sub);box-shadow:none}
 html body dialog .timestamp{font-size:14px}
 html body dialog .draft-note,html body dialog p.muted{font-size:14px}
 html body .community-feed-heading h2{font-size:20px}
 /* R8: post detail, quick guide, generic dialog buttons */
-html body dialog button:not([class]):not(.primary){min-height:48px;padding:8px 18px;background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;font-weight:700}
+html body dialog button:not([class]):not(.primary){min-height:48px;padding:8px 18px;background:#fff;color:var(--ya-green-d);border:1.5px solid #c3d4d0;border-radius:999px;box-shadow:0 1px 2px rgba(70,55,40,.06);font-weight:700}
 html body .draft-status{font-size:14px;background:var(--ya-mint);color:var(--ya-green-d);border-radius:14px}
 html body dialog h3{color:var(--ai-ink);font-weight:700}
 html body .guide-features li{font-size:15px;line-height:1.6;color:var(--ai-ink)}
 html body .guide-features li>span{color:var(--ya-coral)}
 html body .guide-skip,html body dialog button.guide-skip{font-size:15px;min-height:44px;color:var(--ai-sub);text-decoration:underline;text-underline-offset:4px;border:0;background:none;box-shadow:none}
 html body .guide-last-note{font-size:14px;color:var(--ai-sub)}
-html body .guide-step-dots span{width:9px;height:9px;background:#f3d9cd}
+html body .guide-step-dots span{width:9px;height:9px;background:#e3d9cc}
 html body .guide-step-dots span.is-current{width:28px;background:var(--ya-coral)}
-html body .guide-stage{font-size:13px;background:var(--ya-lemon);color:#77500f;font-weight:700}
-html body .guide-controls button:not(.primary){background:#fff;border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;color:var(--ya-green-d);font-weight:700}
+html body .guide-stage{font-size:13px;background:var(--ya-lemon);color:#6f5420;font-weight:700}
+html body .guide-controls button:not(.primary){background:#fff;border:1.5px solid #c3d4d0;border-radius:999px;box-shadow:0 1px 2px rgba(70,55,40,.06);color:var(--ya-green-d);font-weight:700}
 /* R9: port map page, boarding code */
-html body .port-map-tools{border-radius:22px;border:0;box-shadow:0 3px 0 #f3e3d8;background:#fff}
-html body .port-map-tools>.primary{background:var(--ya-green);color:#fff;border:0;border-radius:999px;box-shadow:0 4px 0 var(--ya-green-d);font-size:15px;min-height:50px;justify-content:center}
-html body .port-map-tools .port-country-button,html body .port-map-tools>button:not(.primary){background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0;border-radius:999px;box-shadow:0 3px 0 #cfeae4;font-size:14px;font-weight:700;min-height:48px}
-html body .port-map-tools .port-picker select{background:#fff;border:2px solid #ead9cd;border-radius:16px;min-height:48px;font-size:17px}
-html body .port-map-filters button{background:#fff;color:var(--ya-green-d);border:2px solid #a9d9d0;border-radius:999px;box-shadow:none;font-size:14px!important;font-weight:700;min-height:46px;padding:8px 14px}
+html body .port-map-tools{border-radius:18px;border:0;box-shadow:0 1px 2px rgba(70,55,40,.05),0 6px 20px rgba(70,55,40,.06);background:#fff}
+html body .port-map-tools>.primary{background:var(--ya-green);color:#fff;border:0;border-radius:999px;box-shadow:0 6px 16px rgba(22,74,77,.2);font-size:15px;min-height:50px;justify-content:center}
+html body .port-map-tools .port-country-button,html body .port-map-tools>button:not(.primary){background:#fff;color:var(--ya-green-d);border:1.5px solid #c3d4d0;border-radius:999px;box-shadow:0 1px 2px rgba(70,55,40,.06);font-size:14px;font-weight:700;min-height:48px}
+html body .port-map-tools .port-picker select{background:#fff;border:1.5px solid #d6cbbf;border-radius:16px;min-height:48px;font-size:17px}
+html body .port-map-filters button{background:#fff;color:var(--ya-green-d);border:1.5px solid #c3d4d0;border-radius:999px;box-shadow:none;font-size:14px!important;font-weight:700;min-height:46px;padding:8px 14px}
 html body .port-map-filters button[aria-pressed=true]{background:var(--ya-green);border-color:var(--ya-green);color:#fff}
-html body .port-map-frame{border:0;border-radius:24px;box-shadow:var(--ai-shadow)}
-html body .port-spot-card{border:0;border-radius:28px;background:#fff;box-shadow:var(--ai-shadow)}
+html body .port-map-frame{border:0;border-radius:20px;box-shadow:var(--ai-shadow)}
+html body .port-spot-card{border:0;border-radius:20px;background:#fff;box-shadow:var(--ai-shadow)}
 html body .port-spot-card.is-selected{outline:3px solid var(--ya-green);outline-offset:3px}
 html body .port-spot-card-body>strong{font-weight:700}
 html body .port-card-link{background:var(--ya-mint);color:var(--ya-green-d);border-radius:999px;padding:10px 16px;font-size:14px!important;font-weight:700}
-html body .port-stop-card{border:0;border-radius:22px;background:#fff;box-shadow:0 3px 0 #f3e3d8}
+html body .port-stop-card{border:0;border-radius:18px;background:#fff;box-shadow:0 1px 2px rgba(70,55,40,.05),0 6px 20px rgba(70,55,40,.06)}
 html body .port-stop-card small{font-size:14px;color:var(--ai-sub)}
-html body .port-spot-tip,html body .port-transport-note{background:var(--ya-lemon);color:#6f4b0e;border-radius:16px;font-size:14px!important}
+html body .port-spot-tip,html body .port-transport-note{background:var(--ya-lemon);color:#6f5420;border-radius:16px;font-size:14px!important}
 html body .port-guide-heading>.textbtn{font-size:15px}
 html body .port-map-legend{font-size:14px}
-html body main .port-map-tools>button.primary,html body .port-guide .port-map-tools>.primary{background:var(--ya-green)!important;background-image:none!important;color:#fff!important;border:0!important;box-shadow:0 4px 0 var(--ya-green-d)!important}
+html body main .port-map-tools>button.primary,html body .port-guide .port-map-tools>.primary{background:var(--ya-green)!important;background-image:none!important;color:#fff!important;border:0!important;box-shadow:0 6px 16px rgba(22,74,77,.2)!important}
 /* R10: narrow phones and desktop */
 @media(max-width:370px){
  html body .polaroid .card-destination{white-space:normal;line-height:1.35}
@@ -260,3 +257,14 @@ html body main .port-map-tools>button.primary,html body .port-guide .port-map-to
 html body .port-map-filters{flex-wrap:wrap!important;overflow:visible!important}
 @media(min-width:761px){html body .polaroid small{display:block;padding:0 14px}}
 @media(max-width:370px){html body .stamp-panel .topline .primary,html body .topline>.primary{font-size:15px;padding-inline:10px}}
+
+/* ================= Grown-up pass ================= */
+html body{font-weight:500;letter-spacing:.02em}
+html body main h3,html body dialog h3{font-family:var(--ya-font);letter-spacing:.03em}
+html body .voyage-counter strong{font-family:var(--ya-serif)!important;font-weight:700}
+html body section.card,html body .card,html body .voyage-pass,html body .stamp-panel,html body .ship-notice-board,html body .map-home-card,html body .ship-event,html body .polaroid,html body .journey-journal,html body .ship-location,html body .voyage-counter.is-countdown,html body .ship-place-detail,html body .gallery .post,html body .port-spot-card{border:1px solid var(--ya-hair)!important}
+html body .ship-event.event-music{border-color:transparent!important}
+html body .journey-link,html body .editorial-notice,html body .community-service,html body .account-compact,html body .help-topics button,html body .encounter-card,html body .port-stop-card,html body .port-map-tools{border:1px solid var(--ya-hair)!important}
+html body .tag,html body .chip,html body div.chip,html body .sample-clock,html body .port-map-sample,html body .notice-pill,html body .booking-details .tag,html body .pass-status,html body .guide-stage{font-weight:500;letter-spacing:.06em}
+html body .primary,html body a.account-link.primary{letter-spacing:.08em}
+html body .journal-cover{border-color:#d9c08a}
