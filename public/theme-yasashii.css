@@ -126,3 +126,4 @@ html body .tiny-kicker,html body .eyebrow{width:fit-content;max-width:100%;align
 html body nav button,html body nav button.home{font-weight:700}
 @media(max-width:370px){html body .stamp-tabs .ui-icon{display:none}html body .stamp-tabs button{padding-inline:6px;gap:5px}}
 html body .repeat-offer{border-radius:22px;border:0;background:var(--ya-lemon)}
+html body .preparation-card::before{content:"旅じたく"}
