@@ -1,0 +1,356 @@
+/* Port map UI layer (pairs with port-map-ui.js). Loaded last.
+   Layout follows familiar map apps: search bar + chips on the map, round buttons on the right,
+   a sheet from the bottom, a large turn banner while guiding. Text 14px+, targets 44px+. */
+:root{--gm-blue:#2f7de1;--gm-food:#dc7558;--gm-sight:#3b9674;--gm-shop:#8b72c4;--gm-bus:#3b7fc0;--gm-port:#1f6266;--gm-shadow:0 2px 6px rgba(40,50,55,.16),0 8px 22px rgba(40,50,55,.12)}
+
+/* ---------- page ---------- */
+html body .gm-page{display:block}
+html body .gm-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px}
+@media(max-width:760px){html body .gm-head p{display:none}html body main:has(.gm-page){padding-top:10px}}
+html body .gm-head h1{font-size:26px!important;line-height:1.4;margin:0}
+html body .gm-head p{margin:4px 0 0;font-size:15px;line-height:1.6;color:var(--ai-sub)}
+html body .gm-head .textbtn{flex:none;min-height:44px;font-size:15px;white-space:nowrap}
+
+/* ---------- map frame ---------- */
+html body .gmap.port-map-frame{position:relative;display:block!important;height:calc(100svh - 268px)!important;min-height:440px!important;max-height:none!important;margin:0 -6px!important;border:0!important;border-radius:26px!important;overflow:hidden;isolation:isolate;background:#e7efe9!important;box-shadow:0 1px 2px rgba(70,55,40,.08),0 14px 34px rgba(60,70,70,.16)!important}
+html body .gmap .port-map-canvas{position:absolute!important;inset:0;width:100%;height:100%!important;min-height:0!important;max-height:none!important;z-index:0;background:#e7efe9}
+html body .gmap .port-map-canvas .leaflet-tile-pane{filter:saturate(1.08) brightness(1.03) contrast(.96) sepia(.06)!important}
+html body .gmap .leaflet-control-zoom{display:none!important}
+html body .gmap .leaflet-control-attribution{font-size:10px!important;background:rgba(255,255,255,.82);border-radius:8px 0 0 0;color:#55605f}
+html body .gmap .port-map-loading{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:var(--ai-sub)}
+html body .gmap .port-map-error{position:absolute;left:14px;right:14px;top:132px;z-index:700;padding:12px 16px;border-radius:16px;background:#fff;box-shadow:var(--gm-shadow);font-size:15px;color:#8a4034}
+html body .gmap .gm-i{width:22px;height:22px;flex:none}
+
+/* ---------- top: search bar + chips ---------- */
+html body .gmap .gm-top{position:absolute;left:0;right:0;top:0;z-index:650;padding:12px 12px 0;pointer-events:none}
+html body .gmap .gm-top>*{pointer-events:auto}
+html body .gmap .gm-search{display:flex;align-items:center;gap:8px;height:56px;padding:0 6px 0 16px;border-radius:999px;background:#fff;box-shadow:var(--gm-shadow)}
+html body .gmap .gm-search-pin{color:var(--gm-food);width:24px;height:24px}
+html body .gmap .gm-search label{flex:none;font-size:14px;color:var(--ai-sub);letter-spacing:.04em}
+html body .gmap .gm-search select{flex:1;min-width:0;height:48px!important;min-height:48px!important;padding:0 26px 0 4px!important;border:0!important;border-radius:12px!important;background-color:transparent!important;box-shadow:none!important;font-size:20px!important;font-weight:700;color:var(--ai-ink);font-family:var(--ya-font)}
+html body .gmap .gm-search select:focus-visible{outline:3px solid #9dbdb7}
+html body .gmap .gm-all-ports{flex:none;min-height:44px;padding:6px 14px;border:0!important;border-radius:999px;background:var(--ya-mint)!important;color:var(--ya-green-d)!important;box-shadow:none!important;font-size:14px;font-weight:700;white-space:nowrap}
+html body .gmap .gm-chips{display:flex;gap:8px;margin:10px -12px 0;padding:2px 12px 10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+html body .gmap .gm-chips::-webkit-scrollbar{display:none}
+html body .gmap .gm-chip{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 15px 6px 11px;border:0!important;border-radius:999px;background:#fff!important;color:var(--ai-ink)!important;box-shadow:0 1px 3px rgba(40,50,55,.2),0 3px 10px rgba(40,50,55,.1)!important;font-size:15px!important;font-weight:700;white-space:nowrap;scroll-snap-align:start}
+html body .gmap .gm-chip svg{width:20px;height:20px;flex:none}
+html body .gmap .gm-chip.chip-all svg{color:var(--ya-green)}
+html body .gmap .gm-chip.chip-food svg{color:var(--gm-food)}
+html body .gmap .gm-chip.chip-sightseeing svg{color:var(--gm-sight)}
+html body .gmap .gm-chip.chip-shopping svg{color:var(--gm-shop)}
+html body .gmap .gm-chip.chip-bus svg{color:var(--gm-bus)}
+html body .gmap .gm-chip.chip-benefit svg{color:#b8872b}
+html body .gmap .gm-chip[aria-pressed=true]{background:var(--ya-green)!important;color:#fff!important}
+html body .gmap .gm-chip[aria-pressed=true] svg{color:#fff}
+
+/* ---------- round buttons on the right ---------- */
+html body .gmap .gm-fabs{position:absolute;right:12px;top:138px;z-index:640;display:flex;flex-direction:column;gap:10px}
+html body .gmap .gm-fab,html body .gmap .port-locate-button.gm-fab{position:static!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:54px;height:54px;min-width:0;min-height:0;padding:0;border:0!important;border-radius:50%!important;background:#fff!important;color:#3d4a4d!important;box-shadow:var(--gm-shadow)!important;touch-action:manipulation}
+html body .gmap .gm-fab svg{width:22px;height:22px}
+html body .gmap .gm-fab span{font-size:11px!important;font-weight:700;line-height:1.2;letter-spacing:0}
+html body .gmap .gm-fab-locate{color:var(--gm-blue)!important}
+html body .gmap .gm-fab:active{transform:scale(.94)}
+html body .gmap .gm-fab:disabled{opacity:.6}
+
+/* ---------- main action ---------- */
+html body .gmap .gm-cta{position:absolute;left:14px;right:14px;bottom:30px;z-index:640;display:flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:8px 20px;border:0!important;border-radius:999px;background:var(--ya-green)!important;color:#fff!important;box-shadow:0 3px 8px rgba(22,74,77,.3),0 10px 24px rgba(22,74,77,.26)!important;font-size:18px;font-weight:700;letter-spacing:.06em}
+html body .gmap .gm-cta svg{width:26px;height:26px}
+html body .gmap .gm-cta:disabled{opacity:.85}
+html body .gmap.has-sheet .gm-cta,html body .gmap.is-navigating .gm-cta,html body .gmap.is-navigating .gm-top{display:none}
+
+/* ---------- pins ---------- */
+html body .gmap .port-marker{background:none;border:0}
+html body .gm-pin{position:absolute;left:4px;top:2px;display:grid;place-items:center;width:40px;height:40px;border:3px solid #fff;border-radius:50% 50% 50% 50%;color:#fff;box-shadow:0 3px 8px rgba(40,50,55,.32);transform-origin:50% 130%;transition:transform .18s}
+html body .gm-pin::after{content:"";position:absolute;left:50%;bottom:-9px;width:14px;height:14px;margin-left:-7px;border-radius:0 0 4px 0;background:inherit;border-right:3px solid #fff;border-bottom:3px solid #fff;transform:rotate(45deg);z-index:-1}
+html body .gm-pin>b{display:grid;place-items:center;position:relative;z-index:1;width:100%;height:100%;border-radius:50%;background:inherit}
+html body .gm-pin svg{width:22px;height:22px;display:block}
+html body .gm-pin.pin-food{background:var(--gm-food)}
+html body .gm-pin.pin-sightseeing{background:var(--gm-sight)}
+html body .gm-pin.pin-shopping{background:var(--gm-shop)}
+html body .gm-pin.pin-port{background:var(--gm-port)}
+html body .gm-pin.is-selected{transform:scale(1.28);box-shadow:0 5px 14px rgba(40,50,55,.4)}
+html body .gm-pin-benefit{position:absolute;top:-12px;right:-16px;z-index:2;padding:1px 7px;border-radius:999px;background:#f6d77a;color:#5c4308;border:2px solid #fff;font:700 11px/1.5 var(--ya-font);white-space:nowrap}
+html body .gm-stop{display:grid;place-items:center;width:32px;height:32px;margin:2px;border:3px solid #fff;border-radius:10px;background:var(--gm-bus);color:#fff;box-shadow:0 2px 6px rgba(40,50,55,.3)}
+html body .gm-stop b{display:grid}
+html body .gm-stop svg{width:19px;height:19px}
+/* labels: plain text with a white halo, like a printed map */
+html body .gmap .leaflet-tooltip.gm-label{display:block!important;padding:0 2px!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#35403f!important;font:700 14px/1.3 var(--ya-font)!important;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,0 2px 0 #fff,0 -2px 0 #fff,2px 0 0 #fff,-2px 0 0 #fff}
+html body .gmap .leaflet-tooltip.gm-label::before{display:none!important}
+html body .gmap .gm-label.kind-food{color:#a8482c!important}
+html body .gmap .gm-label.kind-sightseeing{color:#22684d!important}
+html body .gmap .gm-label.kind-shopping{color:#614a9c!important}
+html body .gmap .gm-label-port{color:#164a4d!important}
+html body .gmap .gm-label-stop{display:none!important;color:#245f96!important;font-size:13px!important}
+html body .gmap .gm-label-me,html body .gmap .gm-label-origin{color:#1c5cb0!important}
+/* you are here */
+html body .gm-me{position:relative;display:block;width:26px;height:26px}
+html body .gm-me::before{content:"";position:absolute;inset:-12px;border-radius:50%;background:rgba(47,125,225,.22);animation:gm-pulse 2.2s ease-out infinite}
+html body .gm-me i{position:absolute;inset:3px;border:3px solid #fff;border-radius:50%;background:var(--gm-blue);box-shadow:0 2px 6px rgba(20,60,120,.45)}
+@keyframes gm-pulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.25);opacity:0}}
+html body .gm-goal{display:block;width:22px;height:22px;margin:4px;border:5px solid #fff;border-radius:50%;background:#d9483b;box-shadow:0 2px 6px rgba(120,30,20,.45)}
+@media(prefers-reduced-motion:reduce){html body .gm-me::before{animation:none;opacity:.6}html body .gm-pin{transition:none}}
+
+/* ---------- sheets ---------- */
+html body .gmap .gm-sheet,html body .gmap.port-map-frame .port-selected,html body .gmap.port-map-frame .port-route-result{position:absolute!important;left:0!important;right:0!important;top:auto!important;bottom:0!important;z-index:800;width:auto!important;max-height:64%!important;margin:0!important;padding:8px 18px 20px!important;box-sizing:border-box;border:0!important;border-radius:26px 26px 0 0!important;background:#fff!important;box-shadow:0 -6px 28px rgba(40,50,55,.2)!important;color:var(--ai-ink);font-size:15px;overflow-y:auto;overscroll-behavior:contain;animation:gm-up .26s ease-out}
+html body .gmap .gm-sheet[hidden]{display:none!important}
+@keyframes gm-up{from{transform:translateY(28px);opacity:.3}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){html body .gmap .gm-sheet{animation:none!important}}
+html body .gmap .gm-grab{display:block;width:44px;height:5px;margin:2px auto 12px;border-radius:999px;background:#ddd6cc}
+html body .gmap .gm-close{position:absolute;right:12px;top:14px;z-index:2;display:grid;place-items:center;width:44px;height:44px;min-height:0;padding:0;border:0!important;border-radius:50%;background:#f1ece5!important;color:#4a4650!important;box-shadow:none!important;font-size:24px;line-height:1}
+html body .gmap .gm-spot{display:flex;align-items:center;gap:14px;padding-right:50px}
+html body .gmap .gm-spot>div{min-width:0}
+html body .gmap .gm-spot-photo,html body .gmap img.gm-spot-photo{flex:none;width:84px!important;min-width:84px;height:84px!important;border:0;border-radius:18px;object-fit:cover;margin:0;box-shadow:none}
+html body .gmap div.gm-spot-photo{display:grid;place-items:center;background:var(--ya-mint);color:var(--ya-green-d);font-size:13px;text-align:center}
+html body .gmap .gm-spot-badge{flex:none;display:grid;place-items:center;width:60px;height:60px;border-radius:20px;color:#fff}
+html body .gmap .gm-spot-badge svg{width:30px;height:30px}
+html body .gmap .gm-spot-badge.kind-bus{background:var(--gm-bus)}
+html body .gmap .gm-spot-badge.kind-port{background:var(--gm-port)}
+html body .gm-kind{display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:700;letter-spacing:.04em}
+html body .gm-kind svg{width:18px;height:18px}
+html body .gm-kind.kind-food{color:#a8482c}
+html body .gm-kind.kind-sightseeing{color:#22684d}
+html body .gm-kind.kind-shopping{color:#614a9c}
+html body .gm-kind.kind-bus{color:#245f96}
+html body .gm-kind.kind-port{color:#164a4d}
+html body .gmap .gm-sheet h2{margin:2px 0 0!important;padding:0!important;font-family:var(--ya-font)!important;font-size:21px!important;font-weight:700!important;line-height:1.4!important;letter-spacing:.02em}
+html body .gmap .gm-meta{margin:4px 0 0!important;font-size:15px!important;color:var(--ai-sub);line-height:1.5}
+html body .gmap .gm-meta small{display:inline-block;margin-left:8px;padding:0 8px;border-radius:999px;background:var(--ya-lemon);color:#6f5420;font-size:12px}
+html body .gmap .gm-desc{margin:12px 0 0!important;font-size:16px!important;line-height:1.75;color:var(--ai-ink)}
+html body .gmap .gm-benefit-box{margin-top:12px;padding:10px 14px;border-radius:16px;background:var(--ya-lemon);color:#5c4308}
+html body .gmap .gm-benefit-box p{margin:2px 0 0;font-size:14px}
+html body .gmap .gm-actions{display:flex;gap:10px;margin-top:16px}
+html body .gmap .gm-actions>button,html body .gmap .gm-actions>a{flex:1 1 0;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:8px 12px;border-radius:999px;font-size:17px!important;font-weight:700;letter-spacing:.03em;white-space:nowrap;text-decoration:none}
+html body .gmap .gm-actions>button:not(.primary){background:#fff!important;color:var(--ya-green-d)!important;border:1.5px solid #b7ccc7!important;box-shadow:none!important}
+html body .gmap .gm-actions>.primary{flex:1.25 1 0;background:var(--ya-green)!important;color:#fff!important;border:0!important;box-shadow:0 6px 16px rgba(22,74,77,.24)!important}
+html body .gmap .gm-actions>button:disabled{opacity:.4}
+html body .gmap .gm-more{margin-top:14px;border-top:1px solid var(--ya-hair);padding-top:4px}
+html body .gmap .gm-more summary{min-height:44px;display:flex;align-items:center;font-size:15px;font-weight:700;color:var(--ya-green-d);cursor:pointer}
+html body .gmap .gm-tip{margin:4px 0 8px;padding:10px 14px;border-radius:16px;background:var(--ya-lemon);color:#5c4308;font-size:15px;line-height:1.7}
+html body .gmap .gm-small,html body .gm-page .gm-small{font-size:14px!important;line-height:1.7;color:var(--ai-sub);margin:8px 0 0}
+html body .gmap .gm-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:12px}
+html body .gmap .gm-links a,html body .gmap .gm-linkbtn{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0!important;background:none!important;box-shadow:none!important;color:var(--ya-green-d)!important;font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+html body .gmap .gm-credit{margin:6px 0 0;font-size:12px;color:#77717b}
+html body .gmap .gm-credit a{color:inherit}
+/* searching… */
+html body .gmap .gm-status{display:flex;align-items:center;gap:12px;margin:10px 0 0;font-size:17px;font-weight:700;line-height:1.6}
+html body .gmap .gm-status i{flex:none;width:22px;height:22px;border:3px solid #cfdcd9;border-top-color:var(--ya-green);border-radius:50%;animation:gm-spin .9s linear infinite}
+@keyframes gm-spin{to{transform:rotate(360deg)}}
+/* route preview */
+html body .gmap .gm-route-head{display:flex;align-items:center;gap:14px;padding-right:50px}
+html body .gmap .gm-walk-badge{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#e6f0fc;color:var(--gm-blue)}
+html body .gmap .gm-walk-badge svg{width:30px;height:30px}
+html body .gmap .gm-route-head strong{display:block;font-size:24px;line-height:1.35;letter-spacing:.02em}
+html body .gmap .gm-route-head span{display:block;font-size:15px;color:var(--ai-sub);line-height:1.5}
+html body .gmap .gm-from{margin:10px 0 0!important;font-size:15px!important;line-height:1.7;color:var(--ai-sub)}
+html body .gmap .gm-start svg{width:20px;height:20px}
+
+/* ---------- guidance ---------- */
+html body .gmap .gm-banner{position:absolute;left:10px;right:10px;top:10px;z-index:820;display:flex;align-items:center;gap:14px;min-height:92px;padding:12px 18px 12px 14px;box-sizing:border-box;border-radius:22px;background:#17666b;color:#fff;box-shadow:0 4px 10px rgba(15,60,62,.3),0 12px 28px rgba(15,60,62,.26)}
+html body .gmap .gm-banner[hidden]{display:none}
+html body .gmap .gm-turn{flex:none;display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:rgba(255,255,255,.16)}
+html body .gmap .gm-turn svg{width:44px;height:44px;stroke-width:2.4}
+html body .gmap .gm-banner span{display:block;font-size:17px;font-weight:700;line-height:1.3;opacity:.92}
+html body .gmap .gm-banner strong{display:block;font-size:25px;line-height:1.3;letter-spacing:.02em;word-break:auto-phrase}
+html body .gmap .gm-banner.is-status{background:#4a5560}
+html body .gmap .gm-banner.is-status strong{font-size:18px;line-height:1.5}
+html body .gmap .gm-banner.is-arrived{background:#b0503f}
+html body .gmap.is-navigating .gm-fabs{top:116px}
+html body .gmap .gm-navbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:8px}
+html body .gmap .gm-navbar>div{min-width:0}
+html body .gmap .gm-navbar strong{display:block;font-size:24px;line-height:1.3}
+html body .gmap .gm-navbar span{display:block;font-size:15px;color:var(--ai-sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body .gmap .gm-end{flex:none;min-height:52px;padding:8px 20px;border:0!important;border-radius:999px;background:#c44a3c!important;color:#fff!important;box-shadow:none!important;font-size:16px;font-weight:700;white-space:nowrap}
+html body .gmap .gm-demo{margin-top:12px}
+html body .gmap .gm-demo-note{margin-top:8px}
+
+/* ---------- under the map ---------- */
+html body .gm-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2px 12px;margin:12px 2px 0}
+html body .gm-foot p{margin:0;font-size:14px!important;color:var(--ai-sub);line-height:1.6}
+html body .gm-foot .textbtn{min-height:44px;font-size:14px!important}
+html body .gm-list-head{margin:26px 2px 12px}
+html body .gm-list-head h2{font-size:22px!important;margin:0}
+html body .gm-list-head p{margin:4px 0 0;font-size:14px;color:var(--ai-sub)}
+html body .gm-list{display:grid;gap:12px}
+html body .gm-row{display:flex;align-items:center;gap:14px;width:100%;min-height:96px;padding:12px 12px 12px 12px;border:1px solid var(--ya-hair)!important;border-radius:22px!important;background:#fff!important;box-shadow:0 1px 2px rgba(70,55,40,.05),0 6px 20px rgba(70,55,40,.06)!important;color:var(--ai-ink)!important;text-align:left;font-weight:500}
+html body .gm-row.is-selected{border-color:var(--ya-green)!important;box-shadow:0 0 0 2px var(--ya-green)!important}
+html body .gm-row-photo,html body img.gm-row-photo{flex:none;width:92px!important;height:92px!important;border:0;border-radius:16px;object-fit:cover;margin:0;box-shadow:none}
+html body div.gm-row-photo{display:grid;place-items:center;background:var(--ya-mint);color:var(--ya-green-d);font-size:13px;text-align:center}
+html body .gm-row-icon{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--gm-bus);color:#fff}
+html body .gm-row-icon svg{width:28px;height:28px}
+html body .gm-row-body{flex:1;min-width:0;display:grid;gap:2px}
+html body .gm-row-body strong{font-size:18px;font-weight:700;line-height:1.4}
+html body .gm-row-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;line-height:1.6;color:var(--ai-sub)}
+html body .gm-row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14px;color:var(--ya-green-d);font-weight:700}
+html body .gm-benefit{padding:0 8px;border-radius:999px;background:var(--ya-lemon);color:#5c4308;font-size:12px}
+html body .gm-row>.ui-icon,html body .gm-row>svg:last-child{flex:none;width:20px;height:20px;color:#a89c8e}
+html body .gm-sources{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:14px!important}
+
+/* national view pills */
+html body .gmap .cruise-port-pill{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 14px 4px 10px;border:0;border-radius:999px;background:#fff;color:var(--ya-green-d);box-shadow:var(--gm-shadow);font:700 16px/1.2 var(--ya-font);white-space:nowrap}
+html body .gmap .cruise-port-pill svg{width:22px;height:22px;color:var(--gm-port)}
+
+/* ---------- wide screens: sheet becomes a card on the left ---------- */
+@media(min-width:761px){
+ html body .gmap.port-map-frame{margin:0!important;height:min(78svh,720px)!important}
+ html body .gmap .gm-top{right:auto;width:440px}
+ html body .gmap .gm-chips{flex-wrap:wrap;overflow:visible}
+ html body .gmap .gm-fabs{top:auto;bottom:34px}
+ html body .gmap .gm-cta{left:auto;right:84px;bottom:34px;width:300px}
+ html body .gmap .gm-sheet,html body .gmap.port-map-frame .port-selected,html body .gmap.port-map-frame .port-route-result{left:14px!important;right:auto!important;bottom:14px!important;width:400px!important;max-height:calc(100% - 190px)!important;border-radius:26px!important}
+ html body .gmap .gm-grab{visibility:hidden;height:0;margin-bottom:8px}
+ html body .gmap .gm-banner{right:auto;width:420px}
+ html body .gmap.has-sheet .gm-cta{display:flex}
+ html body .gmap.is-navigating .gm-cta{display:none}
+ html body .gm-list{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
+}
+@media(max-width:370px){
+ html body .gmap .gm-search label{display:none}
+ html body .gmap .gm-actions>button,html body .gmap .gm-actions>a{font-size:15px!important;padding-inline:8px}
+ html body .gmap .gm-banner strong{font-size:21px}
+ html body .gmap .gm-turn{width:54px;height:54px}
+ html body .gmap .gm-cta{font-size:16px}
+ html body .gm-row-photo,html body img.gm-row-photo{width:76px!important;height:76px!important}
+}
+
+/* ---------- states ---------- */
+html body .gm-nb{white-space:nowrap}
+html body .gmap.has-sheet .gm-fab:not(.gm-fab-locate),html body .gmap.is-navigating .gm-fab:not(.gm-fab-locate){display:none}
+html body .gmap .gm-national-hint{display:none;position:absolute;left:14px;right:14px;bottom:30px;z-index:640;margin:0;padding:14px 18px;border-radius:999px;background:#fff;box-shadow:var(--gm-shadow);color:var(--ai-ink);font-size:17px;font-weight:700;text-align:center}
+html body .gmap.is-national .gm-national-hint{display:block}
+html body .gmap.is-national .gm-cta,html body .gmap.is-national .gm-chips,html body .gmap.is-national .gm-fab-locate,html body .gmap.is-national .gm-all-ports,html body .gmap.is-national .leaflet-tooltip.gm-label-me,html body .gmap.is-national .gm-me{display:none!important}
+html body .gmap.is-national .gm-fabs{top:84px}
+html body .gmap .leaflet-tooltip.gm-label-stop{display:none!important}
+
+/* ================= Round 2 (after review 1) ================= */
+/* paper-like map tint + soft inner edge */
+html body .gmap .port-map-canvas .leaflet-tile-pane{filter:sepia(.2) saturate(.9) hue-rotate(-6deg) brightness(1.05) contrast(.88)!important}
+html body .gmap.port-map-frame::after{content:"";position:absolute;inset:0;z-index:600;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(90,70,40,.1),inset 0 0 36px rgba(120,95,60,.12)}
+/* five equal chips in one row: nothing hidden off-screen */
+html body .gmap .gm-chips{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;margin:10px 0 0;padding:0 0 8px;overflow:visible}
+html body .gmap .gm-chip{flex-direction:column;justify-content:center;gap:2px;min-width:0;min-height:58px;padding:6px 2px;border-radius:18px;font-size:14px!important;letter-spacing:0}
+html body .gmap .gm-chip svg{width:22px;height:22px}
+html body .gmap.has-route .gm-chips,html body .gmap.has-sheet .gm-chips{display:none}
+/* right-side controls */
+html body .gmap .gm-fabs{top:158px;gap:10px;align-items:center}
+html body .gmap .gm-fab,html body .gmap .port-locate-button.gm-fab{width:60px;height:60px}
+html body .gmap .gm-fab span{font-size:14px!important;letter-spacing:-.02em}
+html body .gmap .gm-fab svg{width:21px;height:21px}
+html body .gmap .gm-zoom{display:flex;flex-direction:column;width:52px;border-radius:26px;background:#fff;box-shadow:var(--gm-shadow);overflow:hidden}
+html body .gmap .gm-zoom button{display:grid;place-items:center;width:52px;height:50px;min-height:0;padding:0;border:0!important;border-radius:0!important;background:#fff!important;color:#3d4a4d!important;box-shadow:none!important}
+html body .gmap .gm-zoom button+button{border-top:1px solid #e6e0d7!important}
+html body .gmap .gm-zoom svg{width:24px;height:24px}
+html body .gmap.has-sheet .gm-zoom,html body .gmap.is-navigating .gm-zoom,html body .gmap.has-sheet .gm-fab-whole,html body .gmap.is-navigating .gm-fab-whole{display:none}
+html body .gmap.has-sheet .gm-fabs{top:84px}
+html body .gmap.is-navigating .gm-fabs{top:116px}
+/* labels: small white tags under the pins */
+html body .gmap .leaflet-tooltip.gm-label{padding:2px 9px!important;border:1.5px solid #d9d2c7!important;border-radius:999px!important;background:rgba(255,255,255,.96)!important;box-shadow:0 1px 4px rgba(40,50,55,.16)!important;text-shadow:none;font-size:14px!important;line-height:1.45!important}
+html body .gmap .leaflet-tooltip.gm-label.kind-food{border-color:#eab7a6!important}
+html body .gmap .leaflet-tooltip.gm-label.kind-sightseeing{border-color:#a9d2c1!important}
+html body .gmap .leaflet-tooltip.gm-label.kind-shopping{border-color:#c9bce6!important}
+html body .gmap .leaflet-tooltip.gm-label-port{border-color:#9dbdb7!important;font-family:var(--ya-serif)!important}
+html body .gmap .leaflet-tooltip.gm-label-me,html body .gmap .leaflet-tooltip.gm-label-origin{border-color:#a9c8f0!important}
+html body .gmap .leaflet-tooltip.gm-label.is-selected-label{border-width:2px!important;font-size:15px!important}
+html body .gm-pin.pin-port{width:46px;height:46px;left:1px;top:-4px}
+html body .gm-pin.pin-port svg{width:26px;height:26px}
+html body .gm-goal{position:relative;width:30px;height:30px;margin:0;border:0;border-radius:0;background:none;box-shadow:none}
+html body .gm-goal::before{content:"";position:absolute;left:5px;top:5px;width:20px;height:20px;box-sizing:border-box;border:5px solid #fff;border-radius:50%;background:#d9483b;box-shadow:0 2px 6px rgba(120,30,20,.45)}
+/* stacked actions */
+html body .gmap .gm-actions.gm-stack{flex-direction:column}
+html body .gmap .gm-actions.gm-stack>button,html body .gmap .gm-actions.gm-stack>a{flex:none;width:100%;min-height:58px;font-size:18px!important}
+html body .gmap .gm-actions.gm-minor{gap:8px;margin-top:10px}
+html body .gmap .gm-actions.gm-minor>button,html body .gmap .gm-actions.gm-minor>a{flex:1 1 auto;min-height:48px;padding:6px 10px;border:1.5px solid #cfd9d6!important;background:#fff!important;color:var(--ya-green-d)!important;box-shadow:none!important;font-size:15px!important;font-weight:700}
+/* guidance */
+html body .gmap .gm-banner.is-arrived{background:#17666b;box-shadow:0 0 0 3px #d9c08a inset,0 12px 28px rgba(15,60,62,.26)}
+html body .gmap .gm-banner.is-arrived .gm-turn{background:#d9c08a;color:#123f42}
+html body .gmap .gm-practice{display:flex;align-items:center;gap:10px;margin:12px 0 0;font-size:15px;font-weight:700;color:#6f5420}
+html body .gmap .gm-practice::before{content:"";width:10px;height:10px;border-radius:50%;background:#d9a441}
+html body .gmap .gm-practice span{font-weight:500;color:var(--ai-sub)}
+html body .gmap .gm-demo{margin-top:8px}
+html body .gmap .gm-demo>button:not(.primary){flex:.7 1 0}
+html body .gmap.is-national .gm-all-ports{display:inline-flex!important;align-items:center}
+html body .gmap.is-national .gm-zoom,html body .gmap.is-national .gm-fab-whole{display:none}
+@media(min-width:761px){html body .gmap .gm-chips{grid-auto-columns:auto;justify-content:start}html body .gmap .gm-chip{flex-direction:row;min-height:46px;padding:6px 14px;border-radius:999px}html body .gmap.has-sheet .gm-chips,html body .gmap.has-route .gm-chips{display:grid}html body .gmap .gm-fabs,html body .gmap.has-sheet .gm-fabs,html body .gmap.is-navigating .gm-fabs{top:auto;bottom:34px}html body .gmap.has-sheet .gm-zoom,html body .gmap.has-sheet .gm-fab-whole{display:flex}}
+html body .gmap.is-deep .port-map-canvas .leaflet-tile-pane{filter:contrast(.62) brightness(1.5) sepia(.18) saturate(1.15)!important}
+
+/* ================= Round 3 (after review 2) ================= */
+html body .gmap.port-map-frame{height:calc(100svh - 304px)!important;min-height:430px!important}
+html body .gm-foot{margin:10px 2px 0}
+html body .gm-foot p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body .gm-after{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:10px}
+/* washi-like grain over the tiles */
+html body .gmap.port-map-frame::before{content:"";position:absolute;inset:0;z-index:590;pointer-events:none;border-radius:inherit;opacity:.5;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .3  0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* selected label takes the colour of its pin */
+html body .gmap .leaflet-tooltip.gm-label.is-selected-label{color:#fff!important;border-color:#fff!important;box-shadow:0 2px 8px rgba(40,50,55,.3)!important}
+html body .gmap .leaflet-tooltip.gm-label.is-selected-label.kind-food{background:var(--gm-food)!important}
+html body .gmap .leaflet-tooltip.gm-label.is-selected-label.kind-sightseeing{background:var(--gm-sight)!important}
+html body .gmap .leaflet-tooltip.gm-label.is-selected-label.kind-shopping{background:var(--gm-shop)!important}
+html body .gmap .leaflet-tooltip.gm-label-port{color:#164a4d!important;border-color:#1f6266!important}
+html body .gm-stop{transition:transform .18s}
+html body .gm-stop.is-selected{transform:scale(1.35);box-shadow:0 0 0 3px rgba(59,127,192,.35),0 4px 10px rgba(40,50,55,.35)}
+html body .gmap.is-navigating .leaflet-tooltip.gm-label-me{display:none!important}
+html body .gmap.is-busy .gm-chips{display:grid}
+/* sheets: a little more room, so the last row is never half cut */
+html body .gmap .gm-sheet,html body .gmap.port-map-frame .port-selected,html body .gmap.port-map-frame .port-route-result{max-height:76%!important;padding-bottom:16px!important}
+html body .gmap .gm-grab{margin-bottom:8px}
+html body .gmap .gm-spot-photo,html body .gmap img.gm-spot-photo{width:76px!important;min-width:76px;height:76px!important}
+html body .gmap .gm-desc{margin-top:10px!important;line-height:1.65}
+html body .gmap .gm-actions{margin-top:12px}
+html body .gmap .gm-actions.gm-stack{gap:8px}
+html body .gmap .gm-actions.gm-stack>button,html body .gmap .gm-actions.gm-stack>a{min-height:54px}
+html body .gmap .gm-more{margin-top:10px}
+/* "stop guiding" is quiet: outline only */
+html body .gmap .gm-end{background:#fff!important;color:#b23c2e!important;border:1.5px solid #dfa59c!important;min-height:48px;padding:6px 16px;font-size:15px}
+@media(min-width:761px){html body .gmap.port-map-frame{height:calc(100svh - 330px)!important;min-height:480px!important}}
+html body .gmap .gm-from{margin-top:6px!important;font-size:14px!important}
+html body .gmap .gm-actions.gm-minor{margin-top:8px}
+html body .gmap .gm-actions.gm-minor>button{min-height:46px}
+html body .gmap .gm-links{margin-top:4px}
+html body .gmap .gm-route-head strong{font-size:23px}
+html body .gmap .gm-walk-badge{width:50px;height:50px}
+html body .gmap .gm-desc-short{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html body .gmap .gm-more[open] summary{margin-bottom:2px}
+html body .gmap .gm-more .gm-desc-full{margin-top:0!important}
+html body .gmap .gm-more .gm-actions{margin:10px 0 4px}
+@media(max-height:760px) and (max-width:760px){
+ html body .gmap .gm-fab-whole{display:none}
+ html body .gmap .gm-zoom button{height:44px}
+ html body .gmap .gm-from{display:none}
+ html body .gmap .gm-desc-short{-webkit-line-clamp:1}
+}
+
+/* ================= Round 4 (after review 3) ================= */
+/* the map's black ink becomes warm brown, so tags and pins lead */
+html body .gm-defs{position:absolute;width:0;height:0}
+html body .gmap .port-map-canvas .leaflet-tile-pane{filter:url(#gm-ink) hue-rotate(-16deg) saturate(1.08) brightness(1.02)!important}
+html body .gmap.is-deep .port-map-canvas .leaflet-tile-pane{filter:url(#gm-ink) hue-rotate(-16deg) saturate(1.08) brightness(1.04) contrast(.92)!important}
+html body .gmap .leaflet-tooltip.gm-label-stop.is-selected-label{display:block!important;background:var(--gm-bus)!important}
+html body .gm-foot p{color:#57525c}
+html body .gmap .gm-small,html body .gm-page .gm-small{color:#57525c}
+html body .gmap.is-national + .gm-foot{visibility:hidden}
+html body .gmap .gm-actions.gm-minor>button{font-size:15px!important;white-space:normal;line-height:1.35}
+html body .gmap .gm-links-split{justify-content:space-between}
+html body .gmap .gm-banner span{font-size:18px}
+html body .gmap .gm-route-head strong small{margin-left:10px;font-size:15px;font-weight:500;color:var(--ai-sub)}
+html body .gmap .gm-route-head span{word-break:auto-phrase}
+
+/* ================= Round 5 (after review 4) ================= */
+html body .gmap .gm-grab{display:none}
+html body .gmap .gm-sheet,html body .gmap.port-map-frame .port-selected,html body .gmap.port-map-frame .port-route-result{padding-top:18px!important}
+html body .gmap .gm-chip svg{stroke-width:2}
+html body .gmap .gm-fab-locate{color:#3d4a4d!important}
+html body .gmap .gm-fab-locate.has-location{color:var(--gm-blue)!important}
+html body .gmap .gm-actions.gm-minor>button.gm-two{flex-direction:column;gap:0;min-height:54px;padding:6px 12px}
+html body .gmap .gm-two b{font-size:16px;font-weight:700}
+html body .gmap .gm-two small{font-size:13px;font-weight:500;color:var(--ai-sub)}
+html body .gmap .gm-linkbtn{padding:0 6px}
+html body .gmap .gm-firststep{margin:12px 0 0;padding:10px 14px;border-radius:16px;background:#e9f1fc;color:#1d4f96;font-size:15px;line-height:1.65;font-weight:500}
+html body .gmap .gm-navbar strong{word-break:auto-phrase;font-size:22px}
+html body .gmap .gm-cta{bottom:34px}
+html body .gmap.is-navigating + .gm-foot{visibility:hidden}
+html body .gmap .gm-navbar span{white-space:normal;overflow:visible;line-height:1.5}
+/* final polish */
+html body .gmap .gm-search select{-webkit-appearance:none;appearance:none;padding-right:34px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 9l7 7 7-7' fill='none' stroke='%23164a4d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 6px center!important;background-size:20px 20px!important}
+html body .gmap .gm-firststep{margin-top:8px;padding:8px 12px;border-radius:14px;font-size:14px;line-height:1.55}
+html body .gmap .gm-practice{margin-top:8px}
+html body .gmap .gm-demo>button{min-height:50px!important}
+html body .gmap.is-navigating .gm-sheet{padding-top:12px!important;padding-bottom:12px!important}
