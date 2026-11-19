@@ -73,7 +73,7 @@ function portMarkerIcon(point,kind){
 function drawPortPins(){
  const map=portMapState.map;if(!map||!portMapState.pins)return;
  const p=portMapCurrent();portMapState.pins.clearLayers();
- if(!map.gmReady){map.gmReady=true;map.setMaxZoom(16);map.attributionControl?.setPrefix(false);setTimeout(()=>{if(portMapState.map===map)map.invalidateSize({pan:false})},450);map.on('moveend zoomend',gmDeclutter)}
+ if(!map.gmReady){map.gmReady=true;map.setMaxZoom(16);map.attributionControl?.setPrefix(false);setTimeout(()=>{if(portMapState.map===map)map.invalidateSize({pan:false})},450);map.on('moveend zoomend',gmDeclutter);gmVector(map)}
  const national=map.getZoom()<=8;gmFrame()?.classList.toggle('is-national',national);gmFrame()?.classList.toggle('is-deep',map.getZoom()>=16);
  const allBtn=document.getElementById('gm-all-ports');if(allBtn)allBtn.textContent=national?p.name+'にもどる':'全国を見る';
  if(national){drawCruisePortButtons();return}
@@ -320,3 +320,90 @@ stopPortNavigation=function(restore=false){
  const was=!!portNavigation;gmStopNavigationBase(restore);
  if(was){if(restore&&portMapState.route)gmFitRoute();gmSync()}
 };
+
+/* ---- vector basemap (gm-2) --------------------------------------------
+   The street map is drawn in the browser from vector data (OpenFreeMap /
+   OpenStreetMap) in the app's own colours. The old picture tiles stay
+   underneath until the new map has loaded, and remain if it cannot load. */
+const GM_GL='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl',GM_GL_LEAFLET='https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js';
+let gmVectorPromise;
+function gmLoadScript(src){return new Promise((ok,ng)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>{s.remove();ng(Error('load'))};document.head.append(s)})}
+function gmLoadVector(){
+ if(!gmVectorPromise)gmVectorPromise=(async()=>{
+  const css=document.createElement('link');css.rel='stylesheet';css.href=GM_GL+'.css';document.head.append(css);
+  if(!window.maplibregl)await gmLoadScript(GM_GL+'.js');
+  if(!L.maplibreGL)await gmLoadScript(GM_GL_LEAFLET);
+ })().catch(e=>{gmVectorPromise=null;throw e});
+ return gmVectorPromise;
+}
+function gmMapStyle(){
+ const S='openmaptiles',ink='#6b5646',halo='#fffaf0',font=['Noto Sans Regular'];
+ const fill=(id,layer,color,filter,extra={})=>({id,type:'fill',source:S,'source-layer':layer,...(filter?{filter}:{}),paint:{'fill-color':color,'fill-antialias':true,...(extra.paint||{})},...(extra.minzoom?{minzoom:extra.minzoom}:{})});
+ const w=(a,b,c,d)=>['interpolate',['exponential',1.5],['zoom'],5,a,10,b,14,c,18,d];
+ const road=(id,classes,color,width,minzoom,casing)=>({id,type:'line',source:S,'source-layer':'transportation',minzoom,filter:['all',['==','$type','LineString'],['in','class',...classes]],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':color,'line-width':width,...(casing?{}:{})}});
+ const label=(id,layer,filter,size,color,extra={})=>({id,type:'symbol',source:S,'source-layer':layer,...(filter?{filter}:{}),...(extra.minzoom!=null?{minzoom:extra.minzoom}:{}),...(extra.maxzoom!=null?{maxzoom:extra.maxzoom}:{}),layout:{'text-field':['coalesce',['get','name:ja'],['get','name']],'text-font':font,'text-size':size,'text-max-width':8,'text-padding':6,...(extra.layout||{})},paint:{'text-color':color,'text-halo-color':halo,'text-halo-width':1.8,...(extra.paint||{})}});
+ const minor=['minor','service','track'],mid=['tertiary','secondary'],big=['primary'],top=['trunk','motorway'];
+ return {version:8,glyphs:'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',
+  sources:{[S]:{type:'vector',url:'https://tiles.openfreemap.org/planet'}},
+  layers:[
+   {id:'bg',type:'background',paint:{'background-color':'#f9f2e5'}},
+   fill('lu-res','landuse','#f6eddd',['in','class','residential','suburb','neighbourhood']),
+   fill('lu-com','landuse','#f8eadf',['in','class','commercial','retail']),
+   fill('lu-ind','landuse','#f0e9df',['in','class','industrial','railway','garages']),
+   fill('lu-school','landuse','#f7edd0',['in','class','school','university','college','kindergarten']),
+   fill('lu-hospital','landuse','#fbe6e1',['==','class','hospital']),
+   fill('lc-farm','landcover','#eef1d6',['==','class','farmland']),
+   fill('lc-grass','landcover','#dceecb',['==','class','grass']),
+   fill('lc-wood','landcover','#cbe5bf',['==','class','wood']),
+   fill('lc-sand','landcover','#f4e8c6',['==','class','sand']),
+   fill('lc-wet','landcover','#d5ebdc',['==','class','wetland']),
+   fill('lu-green','landuse','#d3eac6',['in','class','cemetery','stadium','pitch','playground','track']),
+   fill('park','park','#cfe9c2',null,{paint:{'fill-opacity':.85}}),
+   fill('water','water','#aedbe6',['!=','brunnel','tunnel']),
+   {id:'waterway',type:'line',source:S,'source-layer':'waterway',filter:['!=','brunnel','tunnel'],layout:{'line-cap':'round'},paint:{'line-color':'#b7dfe8','line-width':['interpolate',['linear'],['zoom'],9,1,14,3,18,8]}},
+   fill('aeroway','aeroway','#ece5da',['==','$type','Polygon']),
+   fill('pier-area','transportation','#f9f2e5',['all',['==','$type','Polygon'],['==','class','pier']]),
+   {id:'pier-line',type:'line',source:S,'source-layer':'transportation',filter:['all',['==','$type','LineString'],['==','class','pier']],paint:{'line-color':'#f9f2e5','line-width':w(.5,1,3,10)}},
+   fill('building','building','#f4eadb',null,{minzoom:13,paint:{'fill-outline-color':'#e9dcc8','fill-opacity':['interpolate',['linear'],['zoom'],13,0,14.5,1]}}),
+   {id:'ferry',type:'line',source:S,'source-layer':'transportation',filter:['==','class','ferry'],paint:{'line-color':'#86c0cd','line-width':1.4,'line-dasharray':[2,3]}},
+   {id:'path',type:'line',source:S,'source-layer':'transportation',minzoom:14,filter:['all',['==','$type','LineString'],['==','class','path']],layout:{'line-cap':'round'},paint:{'line-color':'#dcc7a8','line-width':['interpolate',['linear'],['zoom'],14,1,18,3],'line-dasharray':[.2,2]}},
+   road('r-minor-c',minor,'#e6dac8',w(0,.6,3.6,17),12),
+   road('r-mid-c',mid,'#e3d5c0',w(.4,1.6,6.4,24),8),
+   road('r-big-c',big,'#eccf9c',w(.6,2.2,8,27),6),
+   road('r-top-c',top,'#eebf94',w(1,2.6,9,30),4),
+   road('r-minor',minor,'#ffffff',w(0,.2,2.4,15),12),
+   road('r-mid',mid,'#ffffff',w(.2,1,5,22),8),
+   road('r-big',big,'#fff0c7',w(.4,1.6,6.4,25),6),
+   road('r-top',top,'#ffe0b8',w(.6,1.8,7.4,28),4),
+   {id:'rail-c',type:'line',source:S,'source-layer':'transportation',minzoom:8,filter:['in','class','rail','transit'],paint:{'line-color':'#bdb2a7','line-width':['interpolate',['linear'],['zoom'],8,.7,14,2.2,18,5]}},
+   {id:'rail',type:'line',source:S,'source-layer':'transportation',minzoom:11,filter:['in','class','rail','transit'],paint:{'line-color':'#fffaf0','line-width':['interpolate',['linear'],['zoom'],11,.3,14,1,18,3],'line-dasharray':[4,4]}},
+   {id:'pref',type:'line',source:S,'source-layer':'boundary',minzoom:6,filter:['all',['==','admin_level',4],['!=','maritime',1]],paint:{'line-color':'#cdbba6','line-width':1,'line-dasharray':[3,2]}},
+   {id:'country',type:'line',source:S,'source-layer':'boundary',filter:['all',['==','admin_level',2],['!=','maritime',1]],paint:{'line-color':'#c4ae95','line-width':1.2}},
+   label('l-water','water_name',['==','$type','Point'],14,'#4f93a3',{minzoom:8,layout:{'text-letter-spacing':.12},paint:{'text-halo-color':'#d9eff3','text-halo-width':1.2}}),
+   label('l-road','transportation_name',['in','class','primary','secondary','tertiary','trunk'],13,'#8b7767',{minzoom:14,layout:{'symbol-placement':'line','symbol-spacing':380,'text-letter-spacing':.06}}),
+   label('l-poi','poi',['all',['<=','rank',6],['has','name']],13,'#7b6a5c',{minzoom:15.5,layout:{'text-padding':14,'text-max-width':7}}),
+   label('l-green','poi',['all',['in','class','park','garden'],['<=','rank',12],['has','name']],13,'#4d8a5e',{minzoom:14,paint:{'text-halo-color':'#eef7e7'},layout:{'text-padding':10}}),
+   {id:'station-dot',type:'circle',source:S,'source-layer':'poi',minzoom:12,filter:['all',['==','class','railway'],['==','subclass','station']],paint:{'circle-radius':['interpolate',['linear'],['zoom'],12,3,16,5.5],'circle-color':'#ffffff','circle-stroke-color':'#8d7f73','circle-stroke-width':2}},
+   label('l-station','poi',['all',['==','class','railway'],['==','subclass','station']],14,'#5f5148',{minzoom:12,layout:{'text-anchor':'top','text-offset':[0,.6],'text-field':['concat',['coalesce',['get','name:ja'],['get','name']],'駅']}}),
+   label('l-hood','place',['in','class','suburb','quarter','neighbourhood'],13,'#9a8674',{minzoom:13,layout:{'text-letter-spacing':.1,'text-padding':12}}),
+   label('l-village','place',['in','class','village','hamlet'],13,ink,{minzoom:10.5}),
+   label('l-town','place',['==','class','town'],['interpolate',['linear'],['zoom'],8,13,14,16],ink,{minzoom:8}),
+   label('l-city','place',['==','class','city'],['interpolate',['linear'],['zoom'],6,14,10,17,14,20],'#57443a',{minzoom:6.2,layout:{'symbol-sort-key':['get','rank'],'text-letter-spacing':.06},paint:{'text-halo-width':2.2}})
+  ]};
+}
+async function gmVector(map){
+ try{
+  await gmLoadVector();
+  if(portMapState.map!==map||map.gmVector)return;
+  const gl=L.maplibreGL({style:gmMapStyle(),interactive:false,attributionControl:false,localIdeographFontFamily:"'Zen Maru Gothic','Hiragino Maru Gothic ProN','Hiragino Sans','Yu Gothic UI',sans-serif",attribution:'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>・<a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a>・<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a>'}).addTo(map);
+  map.gmVector=gl;
+  const glMap=gl.getMaplibreMap();
+  glMap.once('idle',()=>{
+   if(portMapState.map!==map)return;
+   map.eachLayer(layer=>{if(layer instanceof L.TileLayer)map.removeLayer(layer)});
+   document.getElementById('gmap')?.classList.add('is-vector');
+   map.setMaxZoom(18);
+   const error=document.getElementById('port-map-error');if(error)error.hidden=true;
+  });
+ }catch(e){/* the picture tiles stay */}
+}

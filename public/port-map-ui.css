@@ -354,3 +354,8 @@ html body .gmap .gm-firststep{margin-top:8px;padding:8px 12px;border-radius:14px
 html body .gmap .gm-practice{margin-top:8px}
 html body .gmap .gm-demo>button{min-height:50px!important}
 html body .gmap.is-navigating .gm-sheet{padding-top:12px!important;padding-bottom:12px!important}
+
+/* vector basemap (gm-2): the map is already drawn in our colours, so no tint */
+html body .gmap.is-vector.is-vector .port-map-canvas .leaflet-tile-pane{filter:none!important}
+html body .gmap .port-map-canvas .leaflet-gl-layer{pointer-events:none}
+html body .gmap .port-map-canvas .maplibregl-canvas{outline:0}
