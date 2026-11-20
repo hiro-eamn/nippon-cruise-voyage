@@ -268,3 +268,6 @@ html body .journey-link,html body .editorial-notice,html body .community-service
 html body .tag,html body .chip,html body div.chip,html body .sample-clock,html body .port-map-sample,html body .notice-pill,html body .booking-details .tag,html body .pass-status,html body .guide-stage{font-weight:500;letter-spacing:.06em}
 html body .primary,html body a.account-link.primary{letter-spacing:.08em}
 html body .journal-cover{border-color:#d9c08a}
+
+/* ---------- Senryu slip: a small picture for each verse, like an illustrated postcard ---------- */
+html body .journal-poem.is-senryu .senryu-art{position:absolute;left:11px;bottom:13px;width:78px;height:78px;display:block;writing-mode:horizontal-tb;pointer-events:none}
