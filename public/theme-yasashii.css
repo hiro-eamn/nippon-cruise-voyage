@@ -271,3 +271,23 @@ html body .journal-cover{border-color:#d9c08a}
 
 /* ---------- Senryu slip: a small picture for each verse, like an illustrated postcard ---------- */
 html body .journal-poem.is-senryu .senryu-art{position:absolute;left:11px;bottom:13px;width:78px;height:78px;display:block;writing-mode:horizontal-tb;pointer-events:none}
+
+/* ---------- Home: the booked voyage leads the page, with a photo on top ---------- */
+html body .voyage-pass.has-photo{display:block!important;padding:0 0 20px!important;overflow:hidden}
+html body .voyage-pass.has-photo>*:not(.home-lead-photo){margin-left:20px!important;margin-right:20px!important}
+html body .voyage-pass.has-photo>button.primary{width:calc(100% - 40px)!important;margin-top:14px!important}
+html body .voyage-pass.has-photo>.repeat-offer{margin-top:14px!important}
+html body .voyage-pass.has-photo .home-lead-photo{position:relative;height:172px;margin:0 0 16px;background:#cfe3e6 url(assets/voyage-hero.webp) center 38%/cover no-repeat}
+html body .voyage-pass.has-photo .home-lead-photo.is-after{background-image:url(assets/cruise.webp);background-position:center}
+html body .voyage-pass.has-photo .home-lead-photo span{position:absolute;right:10px;top:10px;padding:3px 10px;border-radius:999px;background:rgba(40,36,32,.62);color:#fff;font-size:12px;line-height:1.6;letter-spacing:.04em}
+html body .home-tiles{display:grid;gap:12px;margin:14px 0}
+html body .home-tile{display:flex;align-items:stretch;gap:0;width:100%;min-height:92px;margin:0;padding:0;border:1px solid var(--ya-hair);border-radius:20px;background:#fff;color:#2f2d33;text-align:left;overflow:hidden;box-shadow:0 4px 14px rgba(60,45,30,.06);font-weight:500}
+html body .home-tile-photo{flex:none;display:block;width:112px;background:#e8e0d2 center/cover no-repeat}
+html body .home-tile-copy{display:grid;align-content:center;gap:2px;flex:1;min-width:0;padding:12px 6px 12px 16px}
+html body .home-tile-copy strong{font-family:var(--ya-serif);font-size:19px;line-height:1.45;letter-spacing:.02em}
+html body .home-tile-copy small{font-size:14px;line-height:1.55;color:#5f5a64}
+html body .home-tile-arrow{flex:none;display:grid;place-items:center;padding:0 14px 0 4px;color:var(--ya-green)}
+html body .home-tile-arrow .ui-icon{width:20px;height:20px}html body .voyage-pass.has-photo>.repeat-offer{width:auto!important;box-sizing:border-box}
+html body .voyage-pass.has-photo>.repeat-offer button.primary{width:100%!important;margin:12px 0 0!important}
+html body .home-tile-copy strong{overflow-wrap:anywhere}
+@media(max-width:370px){html body .home-tile-photo{width:92px}html body .home-tile-copy{padding-left:13px}html body .home-tile-copy strong{font-size:16px;letter-spacing:0}html body .home-tile-arrow{padding:0 11px 0 2px}}
